@@ -19,7 +19,6 @@ module.exports = expressionFunctionParameters =
         multiplyInteger: ["integer", "integer"]
         multiplyFloat: ["float", "float"]
     divide:
-        divideInteger: ["integer", "integer"]
         divideFloat: ["float", "float"]
     negate:
         negateInteger: ["integer"]
