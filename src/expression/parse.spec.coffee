@@ -267,9 +267,154 @@ describe "expression", -> describe "parse", ->
         tokenize = rewire "./../tokenize"
         run = (config) ->
             describe config.description, ->
-                it "returns the expected expression tree", -> (expect expressionParse tokenize config.input).toEqual config.output
+                if config.throws
+                    it "throws the expected exception", -> (expect -> expressionParse tokenize config.input).toThrow config.throws
+                else
+                    it "returns the expected expression tree", -> (expect expressionParse tokenize config.input).toEqual config.output
+
         run
-            description: "valid"
+            description: "operator precedence"
+            input: "4.32 * 8.125 + 9. * .25"
+            output:
+                call: "add"
+                starts: 13
+                ends: 13
+                with: [
+                        call: "multiply"
+                        starts: 5
+                        ends: 5
+                        with: [
+                                primitive: "float"
+                                value: 4.32
+                                starts: 0
+                                ends: 3
+                            ,
+                                primitive: "float"
+                                value: 8.125
+                                starts: 7
+                                ends: 11
+                        ]
+                    ,
+                        call: "multiply"
+                        starts: 18
+                        ends: 18
+                        with: [
+                                primitive: "float"
+                                value: 9
+                                starts: 15
+                                ends: 16
+                            ,
+                                primitive: "float"
+                                value: 0.25
+                                starts: 20
+                                ends: 22
+                        ]
+                ]
+                
+        run
+            description: "operator precedence with parentheses to reinforce"
+            input: "((4.32 * 8.125) + (9. * .25))"
+            output:
+                call: "add"
+                starts: 16
+                ends: 16
+                with: [
+                        call: "multiply"
+                        starts: 7
+                        ends: 7
+                        with: [
+                                primitive: "float"
+                                value: 4.32
+                                starts: 2
+                                ends: 5
+                            ,
+                                primitive: "float"
+                                value: 8.125
+                                starts: 9
+                                ends: 13
+                        ]
+                    ,
+                        call: "multiply"
+                        starts: 22
+                        ends: 22
+                        with: [
+                                primitive: "float"
+                                value: 9
+                                starts: 19
+                                ends: 20
+                            ,
+                                primitive: "float"
+                                value: 0.25
+                                starts: 24
+                                ends: 26
+                        ]
+                ]
+                
+        run
+            description: "operator precedence overridden with parentheses"
+            input: "4.32 * (8.125 + 9.) * .25"
+            output:
+                call: "multiply"
+                starts: 5
+                ends: 5
+                with: [
+                        primitive: "float"
+                        value: 4.32
+                        starts: 0
+                        ends: 3
+                    ,
+                        call: "multiply"
+                        starts: 20
+                        ends: 20
+                        with: [
+                                call: "add"
+                                starts: 14
+                                ends: 14
+                                with: [
+                                        primitive: "float"
+                                        value: 8.125
+                                        starts: 8
+                                        ends: 12
+                                    ,
+                                        primitive: "float"
+                                        value: 9
+                                        starts: 16
+                                        ends: 17
+                                ]
+                            ,
+                                primitive: "float"
+                                value: 0.25
+                                starts: 22
+                                ends: 24
+                        ]
+                ]
+                
+        run
+            description: "invalid literal"
+            input: "4.32 * 8..125 + 9. * .25"
+            throws:
+                reason: "invalidExpression"
+                starts: 7
+                ends: 12
+                
+        run
+            description: "unary used as binary"
+            input: "false and true ! false or true"
+            throws:
+                reason: "invalidExpression"
+                starts: 10
+                ends: 21
+                
+        run
+            description: "double binary"
+            input: "false and true or or false or true"
+            throws:
+                reason: "invalidExpression"
+                starts: 18
+                ends: 25
+                
+        run
+            description: "complex scenario"
             input: "false and not 4.7 < 8.4 + -3.1 or -8 * 9 is 2 * 4 + 7 * 8 and false != true"
             output:
                 call: "and"
