@@ -1,6 +1,6 @@
 # Given an array of token objects to parse:
 # - If the tokens represent a syntactically valid expression, the 
-#   un-type-checked expression object parsed.
+#   untyped expression object parsed.
 # - Otherwise, throws:
 #   + reason: "invalidExpression"
 #   + starts: The number of characters between the start of the file and the 

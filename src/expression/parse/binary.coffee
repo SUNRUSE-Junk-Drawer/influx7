@@ -1,7 +1,8 @@
 # Given:
 # - An array of token objects representing a binary operator expression.
 # - An array of strings specifing the operators which should be found.
-# Returns the equivalent expression object if one is found, otherwise null.
+# Returns the equivalent untyped expression object if one is found, otherwise 
+# null.
 # Ignores any symbol following an operator as it assumed to be a unary operator.
 # Could throw exceptions; recurses to expressionParse for the left and right
 # sides.
