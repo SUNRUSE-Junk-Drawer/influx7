@@ -1,0 +1,22 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    text-decoration: inherit;
+    cursor: default;
+    line-height: inherit;
+}
+
+html {
+    font-size: 0.35cm;
+    font-family: sans-serif;
+    background: linear-gradient(to bottom, #ddd, #eee);
+    background-attachment: fixed;
+    padding: 1em;
+}

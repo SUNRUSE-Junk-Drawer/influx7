@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 14 for Web
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SUNRUSE.Influx.Web", "SUNRUSE.Influx.Web\SUNRUSE.Influx.Web.csproj", "{B1B86EF1-5D02-4509-A0A7-0A1E4330C1EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SUNRUSE.Influx.Web.Unit", "SUNRUSE.Influx.Web.Unit\SUNRUSE.Influx.Web.Unit.csproj", "{FB28037E-2DA3-4DE6-B191-943DC46BDD2F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1B86EF1-5D02-4509-A0A7-0A1E4330C1EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1B86EF1-5D02-4509-A0A7-0A1E4330C1EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1B86EF1-5D02-4509-A0A7-0A1E4330C1EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1B86EF1-5D02-4509-A0A7-0A1E4330C1EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB28037E-2DA3-4DE6-B191-943DC46BDD2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB28037E-2DA3-4DE6-B191-943DC46BDD2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB28037E-2DA3-4DE6-B191-943DC46BDD2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB28037E-2DA3-4DE6-B191-943DC46BDD2F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
