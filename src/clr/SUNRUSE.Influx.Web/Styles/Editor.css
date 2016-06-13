@@ -1,12 +1,18 @@
-﻿textarea {
+﻿article {
     overflow: hidden;
-    resize: none;
-    min-height: 30em;
-    padding: 1.25em;   
     width: 25em;
     line-height: 1.25em;
+    box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.25);
+}
+
+textarea {
+    min-height: 20em;
+    padding: 1.25em;   
     background: linear-gradient(to bottom, white, #BBB 5%, white 10%);
     background-size: 1.25em 1.25em;
     background-repeat: repeat;
-    box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    resize: none;
+    width: 100%;
+    white-space: pre;
 }
