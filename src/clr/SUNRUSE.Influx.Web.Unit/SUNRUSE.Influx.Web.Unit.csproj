@@ -114,11 +114,13 @@
   <ItemGroup>
     <Compile Include="ComposedTestClassBase.cs" />
     <Compile Include="ControllersUnit\EditorControllerUnit.cs" />
+    <Compile Include="Helpers.cs" />
     <Compile Include="MefControllerFactoryUnit.cs" />
     <Compile Include="PersistenceUnit\ContextUnit.cs" />
     <Compile Include="PersistenceUnit\IdentifiableBaseUnit.cs" />
     <Compile Include="ServicesUnit\DatabaseFactoryUnit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServicesUnit\FilterUnit.cs" />
     <Compile Include="ServicesUnit\TimingUnit.cs" />
     <Compile Include="GlobalUnit.cs" />
   </ItemGroup>
