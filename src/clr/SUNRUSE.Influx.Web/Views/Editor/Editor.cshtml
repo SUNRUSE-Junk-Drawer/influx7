@@ -1,8 +1,10 @@
 ﻿@{
     Layout = "~/Views/Layout.cshtml";
-    ViewBag.Title = "Editor";
+    ViewBag.Title = string.Format("{0} - Editor", Model.Title);
 }
+@model SUNRUSE.Influx.Web.Models.EditorModel
 
 <article>
+    @Html.TextBoxFor(m => m.Title)
     <textarea></textarea>
 </article>
