@@ -39,7 +39,7 @@ namespace SUNRUSE.Influx.Web.Persistence
     {
         /// <summary>The unique identifier of <see langword="this"/>.</summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public Guid Id { get; set; } = Guid.NewGuid();
     }
 }
