@@ -24,6 +24,7 @@ namespace SUNRUSE.Influx.Web.Unit.ControllersUnit
             var model = result.Model as EditorModel;
             Assert.IsNotNull(model);
             Assert.AreEqual("", model.Code);
+            Assert.AreEqual("Untitled Program", model.Title);
         }
     }
 }

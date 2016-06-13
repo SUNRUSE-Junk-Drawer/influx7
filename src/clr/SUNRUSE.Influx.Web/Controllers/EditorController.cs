@@ -15,7 +15,7 @@ namespace SUNRUSE.Influx.Web.Controllers
         [Route("")]
         public ActionResult New()
         {
-            return View("Editor", new EditorModel { Code = "" });
+            return View("Editor", new EditorModel { Title = "Untitled Program", Code = "" });
         }
     }
 }
