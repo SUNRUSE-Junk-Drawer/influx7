@@ -1,0 +1,45 @@
+describe "tokenize", -> describe "symbols", ->
+    tokenizeKeywords = require "./keywords"
+    
+    describe "excludes", ->
+        excludes = (character) ->
+            it character, -> (expect tokenizeKeywords.indexOf character).toEqual -1
+            
+        describe "unary symbol", ->
+            excludes "!"
+            excludes "-"
+            
+        describe "binary symbol", ->
+            excludes "+"
+            excludes ">"
+            excludes "!="
+    
+        describe "parenthesis", ->
+            excludes "("
+            excludes "["
+            excludes ")"
+            excludes "]"
+            
+        describe "deliminators", ->
+            excludes ","
+            excludes "."
+    
+    describe "includes", ->
+        includes = (character) ->
+            it character, -> (expect tokenizeKeywords.indexOf character).not.toEqual -1
+        
+        describe "unary keyword", ->
+            includes "not"
+        
+        describe "binary keyword", ->
+            includes "and"
+            includes "or"
+            includes "is"
+            
+        describe "primitive literal", ->
+            includes "false"
+            includes "true"
+        
+        it "no duplicates", ->
+            for character, index in tokenizeKeywords
+                (expect tokenizeKeywords.indexOf character).toEqual index, character
