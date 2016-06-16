@@ -7,6 +7,10 @@ for operator, symbols of require "./../expression/parse/operatorSymbols"
     for symbol in symbols
         module.exports.push symbol
         
+for statement, symbols of require "./../statement/parse/symbols"
+    for symbol in symbols
+        module.exports.push symbol
+        
 # Remove duplicates.
 for character, index in module.exports
     removals = []

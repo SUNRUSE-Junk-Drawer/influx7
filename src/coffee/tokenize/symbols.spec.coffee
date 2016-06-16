@@ -12,6 +12,9 @@ describe "tokenize", -> describe "symbols", ->
             excludes "and"
             excludes "or"
             excludes "is"
+            
+        describe "statement keyword", ->
+            excludes "function"
     
     describe "includes", ->
         includes = (character) ->
@@ -33,6 +36,9 @@ describe "tokenize", -> describe "symbols", ->
         describe "deliminators", ->
             includes ","
             includes "."
+            
+        xdescribe "statement symbol", ->
+            includes "(a statement symbol)"
         
         it "no duplicates", ->
             for character, index in tokenizeSymbols
