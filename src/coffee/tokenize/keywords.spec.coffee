@@ -1,4 +1,4 @@
-describe "tokenize", -> describe "symbols", ->
+describe "tokenize", -> describe "keywords", ->
     tokenizeKeywords = require "./keywords"
     
     describe "excludes", ->
