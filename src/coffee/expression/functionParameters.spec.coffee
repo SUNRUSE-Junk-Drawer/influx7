@@ -5,6 +5,10 @@ describe "expression", -> describe "functionParameters", ->
         it "maps #{input} to #{output} when parameters #{JSON.stringify parameters} are given", ->
             (expect expressionFunctionParameters[input][output]).toEqual parameters
 
+    maps "concatenate", ["float", "float"], "concatenateFloat"
+    maps "concatenate", ["integer", "integer"], "concatenateInteger"
+    maps "concatenate", ["boolean", "boolean"], "concatenateBoolean"
+            
     maps "and", ["boolean", "boolean"], "andBoolean"
     maps "or", ["boolean", "boolean"], "orBoolean"
     maps "not", ["boolean"], "notBoolean"

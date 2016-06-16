@@ -3,6 +3,10 @@
 # could map to, where the values are arrays of strings specifying the types of
 # the parameters required by it.
 module.exports = expressionFunctionParameters = 
+    concatenate:
+        concatenateBoolean: ["boolean", "boolean"]
+        concatenateFloat: ["float", "float"]
+        concatenateInteger: ["integer", "integer"]
     and:
         andBoolean: ["boolean", "boolean"]
     or:

@@ -1,6 +1,10 @@
 # An object, where the keys are the names of typed functions, and the values
 # are strings specifying the names of the types they return.
 module.exports = expressionFunctionReturnTypes = 
+    concatenateBoolean: "boolean"
+    concatenateInteger: "integer"
+    concatenateFloat: "float"
+
     andBoolean: "boolean"
     orBoolean: "boolean"
     notBoolean: "boolean"

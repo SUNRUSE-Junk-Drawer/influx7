@@ -3,7 +3,9 @@ describe "expression", -> describe "parse", -> describe "operatorTokens", ->
     
     maps = (token, operator) -> it "maps #{token} to #{operator}", ->
         (expect token in expressionOperatorTokens[operator]).toBeTruthy()
-        
+    
+    maps ",", "concatenate"
+    
     maps "+", "add"
     maps "-", "subtract"
     maps "-", "negate"

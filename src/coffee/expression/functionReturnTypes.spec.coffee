@@ -1,6 +1,10 @@
 describe "expression", -> describe "functionReturnTypes", ->
     functionReturnTypes = require "./functionReturnTypes"
     maps = (func, type) -> it "maps #{func} to #{type}", -> (expect functionReturnTypes[func]).toEqual type
+
+    maps "concatenateBoolean", "boolean"
+    maps "concatenateInteger", "integer"
+    maps "concatenateFloat", "float"
     
     maps "andBoolean", "boolean"
     maps "orBoolean", "boolean"

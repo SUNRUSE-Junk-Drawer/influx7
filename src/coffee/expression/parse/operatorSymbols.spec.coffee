@@ -3,7 +3,9 @@ describe "expression", -> describe "parse", -> describe "operatorSymbols", ->
     
     maps = (symbol, operator) -> it "maps #{symbol} to #{operator}", ->
         (expect symbol in expressionOperatorSymbols[operator]).toBeTruthy()
-        
+    
+    maps ",", "concatenate"
+    
     maps "+", "add"
     maps "-", "subtract"
     maps "-", "negate"
