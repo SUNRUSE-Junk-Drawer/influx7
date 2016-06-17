@@ -24,7 +24,7 @@
 #   "map".
 #   This is used by cross.
 #   (3, 1, 2) cross 8 = (3, 1, 2) cross (8, 8, 8)
-module.exports = functionPlurality = 
+module.exports = expressionFunctionPluralities = 
     concatenateBoolean: "concatenate"
     concatenateInteger: "concatenate"
     concatenateFloat: "concatenate"
