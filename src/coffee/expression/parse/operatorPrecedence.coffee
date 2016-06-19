@@ -22,6 +22,9 @@ module.exports = expressionOperatorPrecedence = [
         ]
     ,
         unary: []
+        binary: ["concatenate"]
+    ,
+        unary: []
         binary: ["subtract"]
     ,
         unary: []

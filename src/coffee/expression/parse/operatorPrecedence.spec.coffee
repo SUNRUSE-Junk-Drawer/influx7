@@ -23,12 +23,27 @@ describe "tree", -> describe "parse", -> describe "operatorPrecedence", ->
     maps "binary", "greaterThan", "binary", "subtract"
     maps "binary", "greaterThanOrEqual", "binary", "subtract"
     maps "binary", "lessThan", "binary", "subtract"
-    maps "binary", "lessThanOrEqual", "binary", "subtract"
+    maps "binary", "lessThanOrEqual", "binary", "concatenate"
+    maps "binary", "concatenate", "binary", "subtract"
     maps "binary", "subtract", "binary", "add"
     maps "binary", "add", "binary", "multiply"
     maps "binary", "multiply", "binary", "divide"
     maps "binary", "divide", "unary", "negate"
     
+    it "includes every operator a symbol exists for", ->
+        for operator, symbols of require "./operatorSymbols"
+            found = false
+            for level in expressionOperatorPrecedence
+                found = found or (operator in level.unary) or (operator in level.binary)
+            (expect found).toBeTruthy "operator #{operator} is missing"
+
+    it "includes every operator a keyword exists for", ->
+        for operator, symbols of require "./operatorKeywords"
+            found = false
+            for level in expressionOperatorPrecedence
+                found = found or (operator in level.unary) or (operator in level.binary)
+            (expect found).toBeTruthy "operator #{operator} is missing"
+            
     it "does not contain duplicate operators over multiple levels", ->
         for obj, i in expressionOperatorPrecedence
             for type, operators of obj
