@@ -17,36 +17,7 @@
 #   the last token.
 module.exports = expressionGetPlurality = (expression) ->
     if expression.call 
-        plurality = functionPluralities[expression.call] 
-        switch plurality
-            when "concatenate"
-                expression.with.reduce ((t, e) -> t + recurse e), 0
-            when "map"
-                pluralities = (recurse argument for argument in expression.with)
-                firstNonOne = 1
-                for plurality in pluralities
-                    if plurality is 1 then continue
-                    firstNonOne = plurality
-                    break
-                if firstNonOne is 1 then return 1
-                for plurality in pluralities
-                    if plurality is 1 then continue
-                    if plurality is firstNonOne then continue
-                    throw unused =
-                        reason: "inconsistentPlurality"
-                        starts: expression.starts
-                        ends: expression.ends
-                firstNonOne
-            else
-                for argument in expression.with
-                    switch recurse argument
-                        when plurality.input then continue
-                        when 1 then continue
-                        else throw unused =
-                            reason: "invalidPlurality"
-                            starts: expression.starts
-                            ends: expression.ends
-                plurality.output
+        functionPluralities[expression.call] (recurse arg for arg in expression.with), expression.starts, expression.ends
     else
         1
 
