@@ -1,6 +1,4 @@
-window.addEventListener "load", ->
+window.addEventListener "pageshow", ->
+    editorSetupTitle()
     
-tokenize = require "./../tokenize"
-expressionParse = require "./../expression/parse"
-typeCheck = require "./../expression/typeCheck"
-unroll = require "./../expression/unroll"
+editorSetupTitle = require "./setupTitle"
