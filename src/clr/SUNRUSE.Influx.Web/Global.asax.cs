@@ -38,6 +38,7 @@ namespace SUNRUSE.Influx.Web
             Container = CreateCompositionContainer();
             RouteTable.Routes.MapMvcAttributeRoutes();
             BundleTable.Bundles.Add(new StyleBundle("~/bundles/style").Include("~/Styles/*.css"));
+            BundleTable.Bundles.Add(new ScriptBundle("~/bundles/scripts/editor").Include("~/Scripts/Editor.js"));
         }
 
         /// <summary>Raised when <see langword="this"/> ends.</summary>
