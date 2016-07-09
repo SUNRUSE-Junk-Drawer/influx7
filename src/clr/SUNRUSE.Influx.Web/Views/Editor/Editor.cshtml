@@ -5,7 +5,7 @@
 @model SUNRUSE.Influx.Web.Models.EditorModel
 
 <article>
-    @Html.TextBoxFor(m => m.Title)
+    @Html.TextBoxFor(m => m.Title, new { placeholder = "(untitled program)" })
     @Html.TextAreaFor(m => m.Code)
 </article>
 
