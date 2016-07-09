@@ -20,3 +20,16 @@ html {
     background-attachment: fixed;
     padding: 1em;
 }
+
+::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+::-moz-placeholder {
+    color: black;
+    opacity: 0.5;
+}
+
+::-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
