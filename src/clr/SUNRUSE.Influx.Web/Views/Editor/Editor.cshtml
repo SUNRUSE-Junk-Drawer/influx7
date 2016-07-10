@@ -9,4 +9,6 @@
     @Html.TextAreaFor(m => m.Code)
 </article>
 
+@* This is a terrible hack needed to get the ASP.NET Optimization-generated hash URL to the JavaScript so it can start a web-worker using it.*@
+<script>var compilerUrl = @Html.Raw(JsonConvert.SerializeObject(Scripts.Url("~/bundles/scripts/compiler").ToHtmlString()))</script>
 @Scripts.Render("~/bundles/scripts/editor")

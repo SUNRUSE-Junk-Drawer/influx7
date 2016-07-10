@@ -39,6 +39,7 @@ namespace SUNRUSE.Influx.Web
             RouteTable.Routes.MapMvcAttributeRoutes();
             BundleTable.Bundles.Add(new StyleBundle("~/bundles/style").Include("~/Styles/*.css"));
             BundleTable.Bundles.Add(new ScriptBundle("~/bundles/scripts/editor").Include("~/Scripts/Editor.js"));
+            BundleTable.Bundles.Add(new ScriptBundle("~/bundles/scripts/compiler").Include("~/Scripts/Compiler.js"));
         }
 
         /// <summary>Raised when <see langword="this"/> ends.</summary>
