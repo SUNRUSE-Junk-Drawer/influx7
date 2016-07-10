@@ -11,3 +11,4 @@ src/clr/*/App_Data/*.mdf
 src/clr/*/App_Data/*.ldf
 src/clr/*/Properties/PublishProfiles
 src/clr/SUNRUSE.Influx.Web/Scripts/Editor.js
+src/clr/SUNRUSE.Influx.Web/Scripts/Compiler.js

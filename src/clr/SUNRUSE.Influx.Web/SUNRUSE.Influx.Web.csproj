@@ -123,6 +123,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\SUNRUSE FTP.pubxml" />
+    <Content Include="Scripts\Compiler.js" />
     <Content Include="Scripts\Editor.js" />
     <Content Include="Styles\Editor.css" />
     <Content Include="Styles\Reset.css" />
