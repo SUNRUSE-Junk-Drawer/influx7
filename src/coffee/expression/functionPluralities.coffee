@@ -1,4 +1,4 @@
-# Exports an object where the keys are the names of untyped functions, and the
+# Exports an object where the keys are the names of typed functions, and the
 # values are functions taking:
 # - An array of integers specifying the plurality of the arguments.
 # - The number of characters between the start of the file and the start of the
@@ -11,21 +11,40 @@ map = require "./functionPluralities/map"
 concatenate = require "./functionPluralities/concatenate"
 
 module.exports = expressionFunctionPluralities = 
-    concatenate: concatenate
+    concatenateInteger: concatenate
 
-    add: map
-    subtract: map
-    multiply: map
-    divide: map
-    negate: map
+    addInteger: map
+    subtractInteger: map
+    multiplyInteger: map
+    negateInteger: map
     
-    equal: map
-    notEqual: map
-    lessThan: map
-    greaterThan: map
-    lessThanOrEqual: map
-    greaterThanOrEqual: map
+    equalInteger: map
+    notEqualInteger: map
+    lessThanInteger: map
+    greaterThanInteger: map
+    lessThanOrEqualInteger: map
+    greaterThanOrEqualInteger: map
     
-    not: map
-    or: map
-    and: map
+    concatenateFloat: concatenate
+
+    addFloat: map
+    subtractFloat: map
+    multiplyFloat: map
+    divideFloat: map
+    negateFloat: map
+    
+    equalFloat: map
+    notEqualFloat: map
+    lessThanFloat: map
+    greaterThanFloat: map
+    lessThanOrEqualFloat: map
+    greaterThanOrEqualFloat: map
+    
+    concatenateBoolean: concatenate
+    
+    equalBoolean: map
+    notEqualBoolean: map
+    
+    notBoolean: map
+    orBoolean: map
+    andBoolean: map

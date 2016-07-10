@@ -4,27 +4,47 @@ describe "expression", -> describe "functionPluralities", ->
     concatenate = (func) -> describe func, -> it "concatenates vectors", -> (expect functionPluralities[func]).toBe require "./functionPluralities/concatenate"
     reduce = (func) -> describe func, -> it "reduces vectors to scalars", -> (expect functionPluralities[func]).toBe require "./functionPluralities/reduce"
 
-    concatenate "concatenate"
+    concatenate "concatenateBoolean"
+    concatenate "concatenateInteger"
+    concatenate "concatenateFloat"
     
-    map "and"
-    map "or"
-    map "not"
+    map "andBoolean"
+    map "orBoolean"
+    map "notBoolean"
 
-    map "add"
-    map "subtract"
-    map "multiply"
-    map "divide"
-    map "negate"
+    map "addFloat"
+    map "subtractFloat"
+    map "multiplyFloat"
+    map "divideFloat"
+    map "negateFloat"
     
-    map "equal"
-    map "notEqual"
-    
-    map "lessThan"
-    map "lessThanOrEqual"
+    map "addInteger"
+    map "subtractInteger"
+    map "multiplyInteger"
+    map "negateInteger"
 
-    map "greaterThan"
-    map "greaterThanOrEqual"
+    map "equalBoolean"
+    map "notEqualBoolean"
+    
+    map "equalInteger"
+    map "notEqualInteger"
+    
+    map "lessThanInteger"
+    map "lessThanOrEqualInteger"
+
+    map "greaterThanInteger"
+    map "greaterThanOrEqualInteger"
+    
+    map "equalFloat"
+    map "notEqualFloat"
+    
+    map "lessThanFloat"
+    map "lessThanOrEqualFloat"
+
+    map "greaterThanFloat"
+    map "greaterThanOrEqualFloat"
     
     it "maps every function defined", -> 
         for untypedFunction, typedFunctions of require "./functionParameters"
-            (expect functionPluralities[untypedFunction]).toEqual (jasmine.any Function), "no plurality for #{untypedFunction}"
+            for typedFunction of typedFunctions
+                (expect functionPluralities[typedFunction]).toEqual (jasmine.any Function), "no plurality for #{typedFunction}"
