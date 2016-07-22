@@ -1,4 +1,5 @@
 ﻿article {
+    position: relative;
     overflow: hidden;
     width: 25em;
     line-height: 1.25em;
@@ -27,4 +28,105 @@ textarea {
     resize: none;
     width: 100%;
     white-space: pre;
+    font-weight: lighter;
+}
+
+footer {
+    position: relative;
+    height: 1.5rem;
+    line-height: 1.5rem;
+}
+
+footer.done {
+    display: none;
+}
+
+footer .progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 100, 0, 0.3);
+}
+
+footer .message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+}
+
+#SyntaxHighlighting, #Error {
+    position: absolute;
+    top: 3.75rem;
+    left: 1.25rem;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    white-space: pre;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+#SyntaxHighlighting .Comment {
+    color: rgb(76, 136, 107);
+}
+
+#SyntaxHighlighting .Literal {
+    color: rgb(0, 0, 205);
+}
+
+#SyntaxHighlighting .Operator {
+    color: rgb(104, 118, 135);
+}
+
+#SyntaxHighlighting .Parenthesis {
+    color: black;
+}
+
+#SyntaxHighlighting .Identifier {
+    color: black;
+}
+
+#SyntaxHighlighting .Unparsed {
+    color: grey;
+}
+
+#SyntaxHighlighting .Function {
+    color: rgb(24, 122, 234);
+}
+
+#Error {
+    overflow: visible;
+    color: transparent;
+}
+
+#Error .Highlight {
+    background: linear-gradient(to top, red, transparent);
+    opacity: 0.2;
+    margin-left: -0.1rem;
+    margin-right: -0.1rem;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+}
+
+#Error .Message, .Details {
+    background: red;
+    color: white;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+#Error .Message {
+    font-size: 0.7rem;
+    padding-top: 0.175rem;
+}
+
+#Error .Details {
+    padding-bottom: 0.5rem;
+    font-size: 0.5rem;
+    line-height: 0.5rem;
 }
