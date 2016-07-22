@@ -7,6 +7,8 @@
 <article>
     @Html.TextBoxFor(m => m.Title, new { placeholder = "(untitled program)" })
     @Html.TextAreaFor(m => m.Code)
+    <div id="Error"><span class="Before"></span><span class="Highlight"></span><div class="Message"></div><div class="Details"></div></div>
+    <div id="SyntaxHighlighting"></div>
 </article>
 
 @* This is a terrible hack needed to get the ASP.NET Optimization-generated hash URL to the JavaScript so it can start a web-worker using it.*@
