@@ -34,9 +34,9 @@ describe "expression", -> describe "getPlurality", ->
             description: "truthy primitive"
             recursesTo: {}
             functionPluralities:
-                testFunctionA: -> "unexpected call to function plurality a"
-                testFunctionB: -> "unexpected call to function plurality b"
-                testFunctionC: -> "unexpected call to function plurality c"
+                testFunctionA: -> fail "unexpected call to function plurality a"
+                testFunctionB: -> fail "unexpected call to function plurality b"
+                testFunctionC: -> fail "unexpected call to function plurality c"
             input:
                 primitive: "test primitive"
                 value: "test value"
@@ -48,9 +48,9 @@ describe "expression", -> describe "getPlurality", ->
             description: "falsy primitive"
             recursesTo: {}
             functionPluralities:
-                testFunctionA: -> "unexpected call to function plurality a"
-                testFunctionB: -> "unexpected call to function plurality b"
-                testFunctionC: -> "unexpected call to function plurality c"
+                testFunctionA: -> fail "unexpected call to function plurality a"
+                testFunctionB: -> fail "unexpected call to function plurality b"
+                testFunctionC: -> fail "unexpected call to function plurality c"
             input:
                 primitive: "test primitive"
                 value: false
@@ -66,13 +66,13 @@ describe "expression", -> describe "getPlurality", ->
                 testArgumentC: "testArgumentPluralityC"
                 testArgumentD: "testArgumentPluralityD"
             functionPluralities:
-                testFunctionA: -> "unexpected call to function plurality a"
+                testFunctionA: -> fail "unexpected call to function plurality a"
                 testFunctionB: (argumentPluralities, starts, ends) ->
                     (expect argumentPluralities).toEqual ["testArgumentPluralityA", "testArgumentPluralityB", "testArgumentPluralityC", "testArgumentPluralityD"]
                     (expect starts).toEqual 37
                     (expect ends).toEqual 86
                     "testFunctionPlurality"
-                testFunctionC: -> "unexpected call to function plurality c"
+                testFunctionC: -> fail "unexpected call to function plurality c"
             input:
                 call: "testFunctionB"
                 with: ["testArgumentA", "testArgumentB", "testArgumentC", "testArgumentD"]
