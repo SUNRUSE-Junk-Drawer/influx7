@@ -5,6 +5,8 @@ describe "tokenize", -> describe "keywords", ->
         excludes = (character) ->
             it character, -> (expect tokenizeKeywords.indexOf character).toEqual -1
             
+        excludes ":"
+            
         describe "unary symbol", ->
             excludes "!"
             excludes "-"

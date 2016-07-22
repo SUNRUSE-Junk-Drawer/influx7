@@ -1,5 +1,5 @@
 # An array of strings representing symbols which should split tokens.
-module.exports = tokenizeSymbols = [",", "."]
+module.exports = tokenizeSymbols = [",", ".", ":"]
     .concat (opener for opener, closer of require "./parentheses")
     .concat (closer for opener, closer of require "./parentheses")
 
