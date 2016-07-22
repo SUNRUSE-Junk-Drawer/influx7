@@ -25,9 +25,6 @@ describe "tokenize", -> describe "keywords", ->
         describe "deliminators", ->
             excludes ","
             excludes "."
-            
-        xdescribe "statement symbol", ->
-            excludes "(a statement symbol)"
     
     describe "includes", ->
         includes = (character) ->
@@ -44,9 +41,6 @@ describe "tokenize", -> describe "keywords", ->
         describe "primitive literal", ->
             includes "false"
             includes "true"
-            
-        describe "statement keyword", ->
-            includes "function"
         
         it "no duplicates", ->
             for character, index in tokenizeKeywords
