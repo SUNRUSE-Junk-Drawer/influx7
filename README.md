@@ -120,6 +120,11 @@ ends
 children
 : When truthy, this token represents a parentheses block.  Contains more of these objects representing its contents.
 
+### Declarations object
+
+An object, where the keys are the names of declarations made in the current scope (by using "let", or calling lambda expressions)
+and the values are the expression objects they refer to.
+
 ### Expression object
 
 Expression objects are considered *typed* or *untyped*.  Please see (native function call)[#Native function call] for what this means.
