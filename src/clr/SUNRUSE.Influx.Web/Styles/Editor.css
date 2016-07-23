@@ -130,3 +130,8 @@ footer .message {
     font-size: 0.5rem;
     line-height: 0.5rem;
 }
+
+#Result {
+    white-space: pre;
+    margin: 0.75rem;
+}
