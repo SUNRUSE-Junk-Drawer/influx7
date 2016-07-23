@@ -299,11 +299,11 @@ As with map, when the plurality of the arguments mismatches, a compile-time erro
 |                    |                     |          |             | lessThanOrEqualInteger    | integer, integer | boolean |
 |                    |                     |          |             | lessThanOrEqualFloat      | float, float     | boolean |
 | greaterThan        | >                   |          | map         |                           |                  |         |
+|                    |                     |          |             | greaterThanInteger        | integer, integer | boolean |
+|                    |                     |          |             | greaterThanFloat          | float, float     | boolean |
+| greaterThanOrEqual | >=                  |          | map         |                           |                  |         |
 |                    |                     |          |             | greaterThanOrEqualInteger | integer, integer | boolean |
 |                    |                     |          |             | greaterThanOrEqualFloat   | float, float     | boolean |
-| greaterThanOrEqual | >=                  |          | map         |                           |                  |         |
-|                    |                     |          |             | lessThanOrEqualInteger    | integer, integer | boolean |
-|                    |                     |          |             | lessThanOrEqualFloat      | float, float     | boolean |
 | sum                |                     | sum      | fold        |                           |                  |         |
 |                    |                     |          |             | sumInteger                | integer          | integer |
 |                    |                     |          |             | sumFloat                  | float            | float   |
