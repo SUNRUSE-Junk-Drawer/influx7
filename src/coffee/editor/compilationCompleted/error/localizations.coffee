@@ -17,3 +17,9 @@ module.exports = editorErrorLocalizations =
     inconsistentPlurality:
         message: "Plurality mismatch"
         details: "Please ensure that the arguments to this function have a combinable plurality."
+    identifierInvalid:
+        message: "Invalid identifier"
+        details: "Identifiers must start with a-z, followed by any number of a-z and/or 0-9."
+    identifierNotUnique:
+        message: "Identifier not unique to scope"
+        details: "This identifier cannot be defined here as another with the same name is defined in a parent scope."

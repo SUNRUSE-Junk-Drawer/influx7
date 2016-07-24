@@ -10,3 +10,5 @@ describe "editor", -> describe "compilationCompleted", -> describe "error", -> d
     localizes "unopenedParentheses"
     localizes "invalidExpression"
     localizes "inconsistentPlurality"
+    localizes "identifierInvalid"
+    localizes "identifierNotUnique"
