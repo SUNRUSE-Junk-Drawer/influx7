@@ -72,7 +72,7 @@ addEventListener "message", (e) ->
         unrolled = expressionUnroll typeChecked
             
         postMessage
-            result: unrolled
+            result: JSON.stringify unrolled, null, 4
             syntaxHighlighting: syntaxHighlighting
             
     catch ex
