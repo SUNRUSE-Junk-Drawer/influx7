@@ -23,3 +23,6 @@ module.exports = editorErrorLocalizations =
     identifierNotUnique:
         message: "Identifier not unique to scope"
         details: "This identifier cannot be defined here as another with the same name is defined in a parent scope."
+    emptyExpression:
+        message: "Empty expression"
+        details: "An expression was expected here."

@@ -12,3 +12,4 @@ describe "editor", -> describe "compilationCompleted", -> describe "error", -> d
     localizes "inconsistentPlurality"
     localizes "identifierInvalid"
     localizes "identifierNotUnique"
+    localizes "emptyExpression"
