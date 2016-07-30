@@ -171,10 +171,10 @@ starts
 ends
 : The number of characters between the end of the lambda keyword or symbol and the start of the file.
 
-#### Parameter
+#### Reference
 
-parameter
-: A string specifying the parameter referenced.
+reference
+: A string specifying the parameter or declaration referenced.
 
 starts
 : The number of characters between the start of the token and the start of the file.
