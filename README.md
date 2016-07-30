@@ -196,17 +196,6 @@ starts
 ends
 : The number of characters between the end of the token and the start of the file.
 
-#### Declaration reference
-
-reference
-: A string specifying the name of a declaration in the current scope.
-
-starts
-: The number of characters between the start of the reference and the start of the file.
-
-ends
-: The number of characters between the end of the reference and the start of the file.
-
 ## Primitive types
 
 ### boolean
