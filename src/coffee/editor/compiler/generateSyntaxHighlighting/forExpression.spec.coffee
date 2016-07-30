@@ -7,18 +7,19 @@ describe "editor", -> describe "compiler", -> describe "generateSyntaxHighlighti
         editorCompilerGenerateSyntaxHighlightingForExpression = rewire "./forExpression"
     
         run = (config) -> describe config.description, ->
-            result = inputCopy = undefined
-            beforeEach ->
+            result = inputCopy = outputCopy = undefined
+            beforeEach ->           
                 editorCompilerGenerateSyntaxHighlightingForExpression.__set__ "recurse", (input) ->
                     if config.recursesTo is undefined
                         fail "unexpected recursion"
                     else
-                        output = config.recursesTo[input]
-                        if output is undefined
+                        outputCopy = config.recursesTo[input]
+                        if outputCopy is undefined
                             fail "unexpected recursion to #{input}"
                         else
-                            output
+                            outputCopy
                 inputCopy = JSON.parse JSON.stringify config.input
+                outputCopy = JSON.parse JSON.stringify config.output
                 result = editorCompilerGenerateSyntaxHighlightingForExpression inputCopy
             it "does not modify the input", -> (expect inputCopy).toEqual config.input
             it "returns the expected output", -> (expect result).toEqual config.output
