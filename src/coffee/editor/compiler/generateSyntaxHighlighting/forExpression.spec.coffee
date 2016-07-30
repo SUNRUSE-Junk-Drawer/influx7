@@ -62,15 +62,29 @@ describe "editor", -> describe "compiler", -> describe "generateSyntaxHighlighti
                 starts: 320
                 ends: 360
             recursesTo:
-                testArgumentA: "test recursed argument a"
-                testArgumentB: "test recursed argument b"
-                testArgumentC: "test recursed argument c"
+                testArgumentA: [
+                    "test recursed argument a a"
+                    "test recursed argument a b"
+                ]
+                testArgumentB: [
+                    "test recursed argument b"
+                ]
+                testArgumentC: [
+                    "test recursed argument c a"
+                    "test recursed argument c b"
+                    "test recursed argument c c"
+                    "test recursed argument c d"
+                ]
             output: [
                     starts: 320
                     ends: 360
                     class: "Function"
                 ,
-                    "test recursed argument a"
+                    "test recursed argument a a"
+                    "test recursed argument a b"
                     "test recursed argument b"
-                    "test recursed argument c"
+                    "test recursed argument c a"
+                    "test recursed argument c b"
+                    "test recursed argument c c"
+                    "test recursed argument c d"
             ]
