@@ -138,3 +138,15 @@ describe "editor", -> describe "compiler", -> describe "generateSyntaxHighlighti
                     ends: 360
                     class: "Parenthesis"
             ]
+            
+        run
+            description: "reference"
+            input:
+                reference: "testReference"
+                starts: 320
+                ends: 360
+            output: [
+                starts: 320
+                ends: 360
+                class: "Identifier"
+            ]

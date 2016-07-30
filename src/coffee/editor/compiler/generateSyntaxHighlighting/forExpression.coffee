@@ -44,5 +44,10 @@ module.exports = editorCompilerGenerateSyntaxHighlightingForExpression = (expres
         before
             .concat between
             .concat after
+    when expression.reference then [
+        starts: expression.starts
+        ends: expression.ends
+        class: "Identifier"
+    ]
     
 recurse = module.exports

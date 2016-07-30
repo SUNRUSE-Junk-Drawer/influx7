@@ -2,6 +2,7 @@ describe "expression", -> describe "parse", ->
     rewire = require "rewire"
     describe "imports", ->
         expressionParse = rewire "./parse"
+        it "expressionParseReference", -> (expect expressionParse.__get__ "expressionParseReference").toBe require "./parse/reference"
         it "expressionParseStatement", -> (expect expressionParse.__get__ "expressionParseStatement").toBe require "./parse/statement"
         it "expressionParseBoolean", -> (expect expressionParse.__get__ "expressionParseBoolean").toBe require "./parse/boolean"
         it "expressionParseInteger", -> (expect expressionParse.__get__ "expressionParseInteger").toBe require "./parse/integer"
@@ -49,7 +50,10 @@ describe "expression", -> describe "parse", ->
                 beforeEach ->                    
                     operatorPrecedence = JSON.parse JSON.stringify operatorPrecedenceCopy
                     expressionParse.__set__ "expressionParseOperatorPrecedence", operatorPrecedence
-                
+
+                    expressionParse.__set__ "expressionParseReference", (expr) ->
+                        (expect expr).toEqual inputCopy
+                        config.parsesReferenceTo or null                    
                     expressionParse.__set__ "expressionParseParentheses", (expr) ->
                         (expect expr).toEqual inputCopy
                         config.parsesParenthesesTo or null
@@ -135,6 +139,21 @@ describe "expression", -> describe "parse", ->
                 testLevelDBinary: null
             parsesStatementTo: "test parsed statement expression"
             output: "test parsed statement expression"
+
+        run
+            description: "reference"
+            parsesUnaryTo:
+                testLevelAUnary: null
+                testLevelBUnary: null
+                testLevelCUnary: null
+                testLevelDUnary: null
+            parsesBinaryTo:
+                testLevelABinary: null
+                testLevelBBinary: null
+                testLevelCBinary: null
+                testLevelDBinary: null
+            parsesReferenceTo: "test parsed reference expression"
+            output: "test parsed reference expression"
             
         describe "literals", ->
             run

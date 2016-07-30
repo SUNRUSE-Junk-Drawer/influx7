@@ -12,7 +12,7 @@
 # Recurses through to expressionParseParentheses/expressionParseStatement; could 
 # throw other exceptions.
 module.exports = expressionParse = (tokens) ->
-    result = (expressionParseStatement tokens) or (expressionParseParentheses tokens) or (expressionParseFloat tokens) or (expressionParseInteger tokens) or (expressionParseBoolean tokens)
+    result = (expressionParseReference tokens) or (expressionParseStatement tokens) or (expressionParseParentheses tokens) or (expressionParseFloat tokens) or (expressionParseInteger tokens) or (expressionParseBoolean tokens)
     if result
         result
     else
@@ -26,6 +26,7 @@ module.exports = expressionParse = (tokens) ->
             starts: tokens[0].starts
             ends: tokens[tokens.length - 1].ends   
     
+expressionParseReference = require "./parse/reference"
 expressionParseStatement = require "./parse/statement"
 expressionParseParentheses = require "./parse/parentheses"
 expressionParseUnary = require "./parse/unary"
