@@ -14,14 +14,15 @@ describe "expression", -> describe "parse", -> describe "binary", ->
             testOperatorD: ["testOperatorSymbolDA", "testOperatorSymbolDB"]
         run = (config) ->
             describe config.description, ->
-                result = inputCopy = operatorsCopy = expressionParseOperatorTokensCopy = undefined
+                result = inputCopy = operatorsCopy = expressionParseOperatorTokensCopy = expectTokensCopy = undefined
                 beforeEach ->                    
                     inputCopy = JSON.parse JSON.stringify config.tokens
                     operatorsCopy = JSON.parse JSON.stringify operators
+                    expectTokensCopy = JSON.parse JSON.stringify config.expectTokens or null
                     expressionParseOperatorTokensCopy = JSON.parse JSON.stringify expressionParseOperatorTokens
                     expressionParseBinary.__set__ "expressionParse", (input) ->
-                        if config.expectTokens
-                            for option in config.expectTokens
+                        if expectTokensCopy
+                            for option in expectTokensCopy
                                 if option.tokens[0].token isnt input[0].token then continue
                                 (expect input).toEqual option.tokens
                                 return option.output
@@ -34,6 +35,7 @@ describe "expression", -> describe "parse", -> describe "binary", ->
                 it "does not modify the input tokens", -> (expect inputCopy).toEqual config.tokens
                 it "does not modify the input operators", -> (expect operatorsCopy).toEqual operators
                 it "does not modify expressionParseOperatorTokens", -> (expect expressionParseOperatorTokensCopy).toEqual expressionParseOperatorTokens
+                it "does not modify the recursed expressions", -> (expect expectTokensCopy).toEqual config.expectTokens or null
         describe "one token", ->
             run
                 description: "which is not a symbol or keyword match"
