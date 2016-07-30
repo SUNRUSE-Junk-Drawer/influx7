@@ -196,6 +196,19 @@ starts
 ends
 : The number of characters between the end of the token and the start of the file.
 
+#### Return statement
+
+return
+: The expression object being returned.
+
+starts
+: The number of characters between the start of the "return" token and the start 
+  of the file.
+
+ends
+: The number of characters between the end of the "return" token and the start 
+  of the file.
+
 ## Primitive types
 
 ### boolean
