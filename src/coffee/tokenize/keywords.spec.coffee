@@ -41,6 +41,9 @@ describe "tokenize", -> describe "keywords", ->
         describe "primitive literal", ->
             includes "false"
             includes "true"
+            
+        describe "statement keyword", ->
+            includes "return"
         
         it "no duplicates", ->
             for character, index in tokenizeKeywords

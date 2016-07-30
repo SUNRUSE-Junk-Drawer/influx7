@@ -5,3 +5,6 @@ module.exports = tokenizeKeywords = ["false", "true"]
 for operator, keywords of require "./../expression/parse/operatorKeywords"
     for keyword in keywords
         module.exports.push keyword
+        
+for keyword of require "./../expression/parse/statement/functions"
+    module.exports.push keyword

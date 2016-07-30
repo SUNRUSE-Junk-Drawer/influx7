@@ -9,9 +9,10 @@
 #           of the last token.
 # Assumes that the argument is not empty, as if it was, it would not know which
 # range of characters to include in the exception.
-# Recurses through to expressionParseParentheses; could throw other exceptions.
+# Recurses through to expressionParseParentheses/expressionParseStatement; could 
+# throw other exceptions.
 module.exports = expressionParse = (tokens) ->
-    result = (expressionParseParentheses tokens) or (expressionParseFloat tokens) or (expressionParseInteger tokens) or (expressionParseBoolean tokens)
+    result = (expressionParseStatement tokens) or (expressionParseParentheses tokens) or (expressionParseFloat tokens) or (expressionParseInteger tokens) or (expressionParseBoolean tokens)
     if result
         result
     else
@@ -25,6 +26,7 @@ module.exports = expressionParse = (tokens) ->
             starts: tokens[0].starts
             ends: tokens[tokens.length - 1].ends   
     
+expressionParseStatement = require "./parse/statement"
 expressionParseParentheses = require "./parse/parentheses"
 expressionParseUnary = require "./parse/unary"
 expressionParseBinary = require "./parse/binary"

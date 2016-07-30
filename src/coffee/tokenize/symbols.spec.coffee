@@ -12,6 +12,9 @@ describe "tokenize", -> describe "symbols", ->
             excludes "and"
             excludes "or"
             excludes "is"
+            
+        describe "statement keyword", ->
+            excludes "return"
     
     describe "includes", ->
         includes = (character) ->

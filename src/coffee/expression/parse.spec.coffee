@@ -2,6 +2,7 @@ describe "expression", -> describe "parse", ->
     rewire = require "rewire"
     describe "imports", ->
         expressionParse = rewire "./parse"
+        it "expressionParseStatement", -> (expect expressionParse.__get__ "expressionParseStatement").toBe require "./parse/statement"
         it "expressionParseBoolean", -> (expect expressionParse.__get__ "expressionParseBoolean").toBe require "./parse/boolean"
         it "expressionParseInteger", -> (expect expressionParse.__get__ "expressionParseInteger").toBe require "./parse/integer"
         it "expressionParseFloat", -> (expect expressionParse.__get__ "expressionParseFloat").toBe require "./parse/float"
@@ -69,6 +70,9 @@ describe "expression", -> describe "parse", ->
                         (expect expr).toEqual inputCopy
                         (expect config.parsesBinaryTo[operators]).not.toBeUndefined()
                         config.parsesBinaryTo[operators]
+                    expressionParse.__set__ "expressionParseStatement", (expr) ->
+                        (expect expr).toEqual inputCopy
+                        config.parsesStatementTo or null
                 
                     input = JSON.parse JSON.stringify inputCopy
                 
@@ -116,6 +120,21 @@ describe "expression", -> describe "parse", ->
                 testLevelDBinary: null
             parsesParenthesesTo: "test parsed parentheses expression"
             output: "test parsed parentheses expression"
+            
+        run
+            description: "statement"
+            parsesUnaryTo:
+                testLevelAUnary: null
+                testLevelBUnary: null
+                testLevelCUnary: null
+                testLevelDUnary: null
+            parsesBinaryTo:
+                testLevelABinary: null
+                testLevelBBinary: null
+                testLevelCBinary: null
+                testLevelDBinary: null
+            parsesStatementTo: "test parsed statement expression"
+            output: "test parsed statement expression"
             
         describe "literals", ->
             run
@@ -261,6 +280,36 @@ describe "expression", -> describe "parse", ->
                     testLevelCBinary: "test parsed lower expression"
                     testLevelDBinary: null
                 output: "test parsed upper expression"
+                
+        run
+            description: "statement over unary"
+            parsesUnaryTo:
+                testLevelAUnary: null
+                testLevelBUnary: "test parsed unary expression"
+                testLevelCUnary: null
+                testLevelDUnary: null
+            parsesBinaryTo:
+                testLevelABinary: null
+                testLevelBBinary: null
+                testLevelCBinary: null
+                testLevelDBinary: null
+            parsesStatementTo: "test parsed statement expression"
+            output: "test parsed statement expression"
+                
+        run
+            description: "statement over binary"
+            parsesUnaryTo:
+                testLevelAUnary: null
+                testLevelBUnary: null
+                testLevelCUnary: null
+                testLevelDUnary: null
+            parsesBinaryTo:
+                testLevelABinary: null
+                testLevelBBinary: "test parsed binary expression"
+                testLevelCBinary: null
+                testLevelDBinary: null
+            parsesStatementTo: "test parsed statement expression"
+            output: "test parsed statement expression"                
                 
     describe "integration", ->
         expressionParse = rewire "./parse"

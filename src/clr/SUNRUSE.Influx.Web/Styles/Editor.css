@@ -81,6 +81,10 @@ footer .message {
     color: rgb(104, 118, 135);
 }
 
+#SyntaxHighlighting .Statement {
+    color: rgb(49, 132, 149);
+}
+
 #SyntaxHighlighting .Parenthesis {
     color: black;
 }

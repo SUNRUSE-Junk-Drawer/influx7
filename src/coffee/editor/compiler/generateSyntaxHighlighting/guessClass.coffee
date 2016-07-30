@@ -12,6 +12,7 @@ module.exports = editorCompilerGenerateSyntaxHighlightingGuessClass = (token) ->
     else
         for key, values of expressionParseOperatorTokens
             if token in values then return "Function"
+        if token in Object.keys expressionParseStatementFunctions then return "Statement"
         for opener, closer of tokenizeParentheses
             if token is opener then return "Parenthesis"
             if token is closer then return "Parenthesis"
@@ -19,3 +20,4 @@ module.exports = editorCompilerGenerateSyntaxHighlightingGuessClass = (token) ->
     
 expressionParseOperatorTokens = require "./../../../expression/parse/operatorTokens"
 tokenizeParentheses = require "./../../../tokenize/parentheses"
+expressionParseStatementFunctions = require "./../../../expression/parse/statement/functions"

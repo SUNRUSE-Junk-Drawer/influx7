@@ -90,3 +90,25 @@ describe "editor", -> describe "compiler", -> describe "generateSyntaxHighlighti
                     "test recursed argument c c"
                     "test recursed argument c d"
             ]
+            
+        run
+            description: "return"
+            input:
+                return: "testReturnExpression"
+                starts: 320
+                ends: 360
+            recursesTo:
+                testReturnExpression: [
+                    "test recursed return expression a"
+                    "test recursed return expression b"
+                    "test recursed return expression c"
+                ]
+            output: [
+                    starts: 320
+                    ends: 360
+                    class: "Statement"
+                ,
+                    "test recursed return expression a"
+                    "test recursed return expression b"
+                    "test recursed return expression c"
+            ]
