@@ -24,7 +24,9 @@ module.exports = expressionParseParentheses = (tokens) -> switch
     else 
         result = expressionParse tokens[0].children
         if result
-            result
+            parentheses: result
+            starts: tokens[0].starts
+            ends: tokens[0].ends            
         else throw unused = 
             reason: "invalidExpression"
             starts: tokens[0].starts

@@ -182,6 +182,17 @@ starts
 ends
 : The number of characters between the end of the token and the start of the file.
 
+#### Parentheses
+
+parentheses
+: The expression object inside the parentheses.
+
+starts
+: The number of characters between the start of the opening parenthesis and the start of the file.
+
+ends
+: The number of characters between the end of the closing parenthesis and the start of the file.
+
 #### Lambda expression call
 
 callLambda

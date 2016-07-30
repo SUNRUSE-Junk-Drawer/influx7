@@ -112,3 +112,29 @@ describe "editor", -> describe "compiler", -> describe "generateSyntaxHighlighti
                     "test recursed return expression b"
                     "test recursed return expression c"
             ]
+            
+        run
+            description: "parentheses"
+            input:
+                parentheses: "testParenthesesExpression"
+                starts: 320
+                ends: 360
+            recursesTo:
+                testParenthesesExpression: [
+                    "test recursed parentheses expression a"
+                    "test recursed parentheses expression b"
+                    "test recursed parentheses expression c"
+                ]
+            output: [
+                    starts: 320
+                    ends: 320
+                    class: "Parenthesis"
+                ,
+                    "test recursed parentheses expression a"
+                    "test recursed parentheses expression b"
+                    "test recursed parentheses expression c"
+                ,
+                    starts: 360
+                    ends: 360
+                    class: "Parenthesis"
+            ]

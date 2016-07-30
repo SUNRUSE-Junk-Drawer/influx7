@@ -364,40 +364,49 @@ describe "expression", -> describe "parse", ->
             description: "operator precedence with parentheses to reinforce"
             input: "((4.32 * 8.125) + (9. * .25))"
             output:
-                call: "add"
-                starts: 16
-                ends: 16
-                with: [
-                        call: "multiply"
-                        starts: 7
-                        ends: 7
-                        with: [
-                                primitive: "float"
-                                value: 4.32
-                                starts: 2
-                                ends: 5
-                            ,
-                                primitive: "float"
-                                value: 8.125
-                                starts: 9
-                                ends: 13
-                        ]
-                    ,
-                        call: "multiply"
-                        starts: 22
-                        ends: 22
-                        with: [
-                                primitive: "float"
-                                value: 9
-                                starts: 19
-                                ends: 20
-                            ,
-                                primitive: "float"
-                                value: 0.25
-                                starts: 24
-                                ends: 26
-                        ]
-                ]
+                parentheses:
+                    call: "add"
+                    starts: 16
+                    ends: 16
+                    with: [
+                            parentheses:
+                                call: "multiply"
+                                starts: 7
+                                ends: 7
+                                with: [
+                                        primitive: "float"
+                                        value: 4.32
+                                        starts: 2
+                                        ends: 5
+                                    ,
+                                        primitive: "float"
+                                        value: 8.125
+                                        starts: 9
+                                        ends: 13
+                                ]
+                            starts: 1
+                            ends: 14
+                        ,
+                            parentheses:
+                                call: "multiply"
+                                starts: 22
+                                ends: 22
+                                with: [
+                                        primitive: "float"
+                                        value: 9
+                                        starts: 19
+                                        ends: 20
+                                    ,
+                                        primitive: "float"
+                                        value: 0.25
+                                        starts: 24
+                                        ends: 26
+                                ]
+                            starts: 18
+                            ends: 27
+                    ]
+                starts: 0
+                ends: 28
                 
         run
             description: "operator precedence overridden with parentheses"
@@ -416,20 +425,23 @@ describe "expression", -> describe "parse", ->
                         starts: 20
                         ends: 20
                         with: [
-                                call: "add"
-                                starts: 14
-                                ends: 14
-                                with: [
-                                        primitive: "float"
-                                        value: 8.125
-                                        starts: 8
-                                        ends: 12
-                                    ,
-                                        primitive: "float"
-                                        value: 9
-                                        starts: 16
-                                        ends: 17
-                                ]
+                                parentheses:
+                                    call: "add"
+                                    starts: 14
+                                    ends: 14
+                                    with: [
+                                            primitive: "float"
+                                            value: 8.125
+                                            starts: 8
+                                            ends: 12
+                                        ,
+                                            primitive: "float"
+                                            value: 9
+                                            starts: 16
+                                            ends: 17
+                                    ]
+                                starts: 7
+                                ends: 18
                             ,
                                 primitive: "float"
                                 value: 0.25

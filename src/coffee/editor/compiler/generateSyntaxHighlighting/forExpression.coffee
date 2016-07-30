@@ -29,5 +29,20 @@ module.exports = editorCompilerGenerateSyntaxHighlightingForExpression = (expres
         ends: expression.ends
         class: "Statement"
     ].concat recurse expression.return
+    when expression.parentheses
+        before = [
+            starts: expression.starts
+            ends: expression.starts
+            class: "Parenthesis"
+        ]
+        between = recurse expression.parentheses
+        after = [
+            starts: expression.ends
+            ends: expression.ends
+            class: "Parenthesis"
+        ]
+        before
+            .concat between
+            .concat after
     
 recurse = module.exports

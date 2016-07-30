@@ -189,7 +189,10 @@ describe "expression", -> describe "parse", -> describe "parentheses", ->
                 starts: 30
                 ends: 70
             ]
-            output: "test recursed"
+            output: 
+                parentheses: "test recursed"
+                starts: 23
+                ends: 245
         run
             description: "parentheses containing multiple tokens forming a valid expression"
             input: [
@@ -223,7 +226,10 @@ describe "expression", -> describe "parse", -> describe "parentheses", ->
                     starts: 160
                     ends: 190
             ]
-            output: "test recursed"
+            output: 
+                parentheses: "test recursed"
+                starts: 23
+                ends: 245            
         run
             description: "parentheses containing a single token forming an invalid expression"
             input: [
