@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\Local Disk.pubxml" />
     <None Include="Properties\PublishProfiles\SUNRUSE FTP.pubxml" />
     <Content Include="Scripts\Compiler.js" />
     <Content Include="Scripts\Editor.js" />
