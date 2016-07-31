@@ -44,6 +44,14 @@ describe "expression", -> describe "functionPluralities", ->
     map "greaterThanFloat"
     map "greaterThanOrEqualFloat"
     
+    reduce "anyBoolean"
+    reduce "allBoolean"
+    
+    reduce "sumInteger"
+    reduce "sumFloat"
+    reduce "productInteger"
+    reduce "sumFloat"
+    
     it "maps every function defined", -> 
         for untypedFunction, typedFunctions of require "./functionParameters"
             for typedFunction of typedFunctions

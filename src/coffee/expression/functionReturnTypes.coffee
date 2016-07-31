@@ -36,3 +36,11 @@ module.exports = expressionFunctionReturnTypes =
     greaterThanFloat: "boolean"
     greaterThanOrEqualInteger: "boolean"
     greaterThanOrEqualFloat: "boolean"
+    
+    allBoolean: "boolean"
+    anyBoolean: "boolean"
+    
+    sumInteger: "integer"
+    productInteger: "integer"
+    sumFloat: "float"
+    productFloat: "float"

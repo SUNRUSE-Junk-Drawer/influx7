@@ -16,3 +16,7 @@ module.exports = expressionParseOperatorSymbols =
     multiply: ["*"]
     divide: ["/"]
     negate: ["-"]
+    sum: []
+    product: []
+    all: []
+    any: []

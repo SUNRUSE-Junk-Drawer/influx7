@@ -7,6 +7,16 @@ module.exports = expressionFunctionParameters =
         concatenateBoolean: ["boolean", "boolean"]
         concatenateFloat: ["float", "float"]
         concatenateInteger: ["integer", "integer"]
+    any:
+        anyBoolean: ["boolean"]
+    all:
+        allBoolean: ["boolean"]
+    sum:
+        sumInteger: ["integer"]
+        sumFloat: ["float"]
+    product:
+        productInteger: ["integer"]
+        productFloat: ["float"]
     and:
         andBoolean: ["boolean", "boolean"]
     or:

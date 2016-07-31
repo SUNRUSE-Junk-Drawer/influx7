@@ -21,6 +21,9 @@ module.exports = expressionOperatorPrecedence = [
             "lessThanOrEqual"
         ]
     ,
+        unary: ["sum", "product", "any", "all"]
+        binary: []
+    ,
         unary: []
         binary: ["concatenate"]
     ,

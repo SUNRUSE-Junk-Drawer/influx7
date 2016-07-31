@@ -37,6 +37,13 @@ describe "expression", -> describe "functionReturnTypes", ->
     maps "greaterThanOrEqualFloat", "boolean"
     maps "greaterThanOrEqualInteger", "boolean"
     
+    maps "allBoolean", "boolean"
+    maps "anyBoolean", "boolean"
+    maps "sumInteger", "integer"
+    maps "sumFloat", "float"
+    maps "productInteger", "integer"
+    maps "productFloat", "float"
+    
     it "maps every function defined", -> 
         for untypedFunction, typedFunctions of require "./functionParameters"
             for typedFunction, parameters of typedFunctions

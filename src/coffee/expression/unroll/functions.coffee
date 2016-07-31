@@ -6,6 +6,20 @@
 map = require "./map"
 concatenate = require "./concatenate"
 
+makeFold = (using) -> (expression) ->
+    plurality = expressionGetPlurality expression.with[0]
+    output = expressionUnroll expression.with[0], plurality - 1
+    for item in [plurality - 2..0] by -1
+        output = 
+            call: using
+            with: [
+                expressionUnroll expression.with[0], item
+                output
+            ]
+            starts: expression.starts
+            ends: expression.ends
+    output
+
 module.exports = expressionUnrollFunctions =
     addInteger: map
     subtractInteger: map
@@ -41,3 +55,14 @@ module.exports = expressionUnrollFunctions =
     concatenateBoolean: concatenate
     concatenateInteger: concatenate
     concatenateFloat: concatenate
+    
+    anyBoolean: makeFold "orBoolean"
+    allBoolean: makeFold "andBoolean"
+    
+    sumInteger: makeFold "addInteger"
+    sumFloat: makeFold "addFloat"
+    productInteger: makeFold "multiplyInteger"
+    productFloat: makeFold "multiplyFloat"
+    
+expressionUnroll = require "./../unroll"
+expressionGetPlurality = require "./../getPlurality"

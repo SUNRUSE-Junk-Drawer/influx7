@@ -41,6 +41,13 @@ describe "expression", -> describe "functionParameters", ->
     maps "greaterThanOrEqual", ["integer", "integer"], "greaterThanOrEqualInteger"
     maps "greaterThanOrEqual", ["float", "float"], "greaterThanOrEqualFloat"
     
+    maps "all", ["boolean"], "allBoolean"
+    maps "any", ["boolean"], "anyBoolean"
+    maps "sum", ["integer"], "sumInteger"
+    maps "product", ["integer"], "productInteger"
+    maps "sum", ["float"], "sumFloat"
+    maps "product", ["float"], "productFloat"
+    
     it "maps every function defined as an operator", -> 
         for operator, symbols of require "./parse/operatorSymbols"
             (expect expressionFunctionParameters[operator]).not.toBeUndefined()

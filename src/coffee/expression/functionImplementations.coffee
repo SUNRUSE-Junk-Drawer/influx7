@@ -39,3 +39,12 @@ module.exports = expressionFunctionImplementations =
     concatenateBoolean: (a, b) -> a.concat b
     concatenateInteger: (a, b) -> a.concat b
     concatenateFloat: (a, b) -> a.concat b
+    
+    anyBoolean: (v) -> true in v
+    allBoolean: (v) -> not (false in v)
+    
+    sumInteger: (v) -> v.reduce (a, b) -> a + b
+    sumFloat: (v) -> v.reduce (a, b) -> a + b
+    
+    productInteger: (v) -> v.reduce (a, b) -> a * b
+    productFloat: (v) -> v.reduce (a, b) -> a * b

@@ -9,6 +9,7 @@
 
 map = require "./functionPluralities/map"
 concatenate = require "./functionPluralities/concatenate"
+reduce = require "./functionPluralities/reduce"
 
 module.exports = expressionFunctionPluralities = 
     concatenateInteger: concatenate
@@ -48,3 +49,11 @@ module.exports = expressionFunctionPluralities =
     notBoolean: map
     orBoolean: map
     andBoolean: map
+    
+    anyBoolean: reduce
+    allBoolean: reduce
+    
+    sumInteger: reduce
+    sumFloat: reduce
+    productInteger: reduce
+    productFloat: reduce

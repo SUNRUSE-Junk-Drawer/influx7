@@ -16,3 +16,7 @@ module.exports = expressionParseOperatorKeywords =
     multiply: []
     divide: []
     negate: []
+    sum: ["sum"]
+    product: ["product"]
+    all: ["all"]
+    any: ["any"]

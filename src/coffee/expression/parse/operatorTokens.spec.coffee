@@ -37,6 +37,11 @@ describe "expression", -> describe "parse", -> describe "operatorTokens", ->
     maps ">", "greaterThan"
     maps ">=", "greaterThanOrEqual"
     
+    maps "any", "any"
+    maps "all", "all"
+    maps "sum", "sum"
+    maps "product", "product"
+    
     it "maps every operator", ->
         operatorPrecedence = require "./operatorPrecedence"
         for level in operatorPrecedence

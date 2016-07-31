@@ -387,6 +387,66 @@ describe "expression", -> describe "functionImplementations", ->
     implementsFunction "concatenateFloat", ->
         as "", [3.7, -4.2, 7.6], [-1.4, 8.9], [3.7, -4.2, 7.6, -1.4, 8.9]
         
+    implementsFunction "anyBoolean", ->
+        as "false", [false], false
+        as "true", [true], true
+        
+        as "false false false", [false, false, false], false
+        as "true false false", [true, false, false], true
+        as "false true false", [false, true, false], true
+        as "true true false", [true, true, false], true
+        as "false false true", [false, false, true], true
+        as "true false true", [true, false, true], true
+        as "false true true", [false, true, true], true
+        as "true true true", [true, true, true], true
+        
+    implementsFunction "allBoolean", ->
+        as "false", [false], false
+        as "true", [true], true
+        
+        as "false false false", [false, false, false], false
+        as "true false false", [true, false, false], false
+        as "false true false", [false, true, false], false
+        as "true true false", [true, true, false], false
+        as "false false true", [false, false, true], false
+        as "true false true", [true, false, true], false
+        as "false true true", [false, true, true], false
+        as "true true true", [true, true, true], true
+        
+    implementsFunction "sumInteger", ->
+        as "single zero", [0], 0
+        as "single positive", [47], 47
+        as "single negative", [-47], -47
+        
+        as "multiple to positive", [47, -36, 12], 23
+        as "multiple to zero", [47, -36, -11], 0
+        as "multiple to negative", [47, -36, -21], -10
+        
+    implementsFunction "sumFloat", ->
+        as "single zero", [0], 0
+        as "single positive", [4.7], 4.7
+        as "single negative", [-4.7], -4.7
+        
+        as "multiple to positive", [4.7, -3.6, 1.2], 2.3
+        as "multiple to zero", [4.7, -3.6, -1.1], 0.0
+        as "multiple to negative", [4.7, -3.6, -2.1], -1.0
+        
+    implementsFunction "productInteger", ->
+        as "single zero", [0], 0
+        as "single positive", [47], 47
+        as "single negative", [-47], -47
+        
+        as "multiple to positive", [47, -36, 12], -20304
+        as "multiple to negative", [47, -36, -12], 20304
+        
+    implementsFunction "productFloat", ->
+        as "single zero", [0], 0
+        as "single positive", [4.7], 4.7
+        as "single negative", [-4.7], -4.7
+        
+        asWithTolerance "multiple to positive", [4.7, -36.0, 1.2], -203.04
+        asWithTolerance "multiple to negative", [4.7, -36.0, -1.2], 203.04
+        
     it "implements every function", ->
         for untypedFunction, typedFunctions of require "./functionParameters"
             for typedFunction of typedFunctions

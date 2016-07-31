@@ -14,6 +14,11 @@ describe "expresion", -> describe "parse", -> describe "operatorKeywords", ->
     
     maps "isnt", "notEqual"
     
+    maps "sum", "sum"
+    maps "product", "product"
+    maps "any", "any"
+    maps "all", "all"
+    
     it "maps every operator", ->
         operatorPrecedence = require "./operatorPrecedence"
         for level in operatorPrecedence
