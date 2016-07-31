@@ -150,3 +150,46 @@ describe "editor", -> describe "compiler", -> describe "generateSyntaxHighlighti
                 ends: 360
                 class: "Identifier"
             ]
+            
+        run
+            description: "let"
+            input:
+                let: 
+                    token: "let"
+                    starts: 35
+                    ends: 47
+                declare:
+                    token: "test identifier"
+                    starts: 80
+                    ends: 104
+                as: "test declared expression"
+                then: "test subsequent expression"
+            recursesTo:
+                "test declared expression": [
+                    "test recursed declared expression a"
+                    "test recursed declared expression b"
+                    "test recursed declared expression c"
+                    "test recursed declared expression d"
+                ]
+                "test subsequent expression": [
+                    "test recursed subsequent expression a"
+                    "test recursed subsequent expression b"
+                    "test recursed subsequent expression c"
+                ]
+            output: [
+                    starts: 35
+                    ends: 47
+                    class: "Statement"
+                ,
+                    starts: 80
+                    ends: 104
+                    class: "Identifier"
+                ,
+                    "test recursed declared expression a"
+                    "test recursed declared expression b"
+                    "test recursed declared expression c"
+                    "test recursed declared expression d"
+                    "test recursed subsequent expression a"
+                    "test recursed subsequent expression b"
+                    "test recursed subsequent expression c"
+            ]

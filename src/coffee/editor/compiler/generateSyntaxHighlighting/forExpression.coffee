@@ -49,5 +49,18 @@ module.exports = editorCompilerGenerateSyntaxHighlightingForExpression = (expres
         ends: expression.ends
         class: "Identifier"
     ]
+    when expression.let
+        before = [
+                starts: expression.let.starts
+                ends: expression.let.ends
+                class: "Statement"
+            ,
+                starts: expression.declare.starts
+                ends: expression.declare.ends
+                class: "Identifier"
+        ]
+        before
+            .concat recurse expression.as
+            .concat recurse expression.then
     
 recurse = module.exports
