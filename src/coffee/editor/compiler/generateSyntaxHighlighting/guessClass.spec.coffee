@@ -82,7 +82,7 @@ describe "editor", -> describe "compiler", -> describe "generateSyntaxHighlighti
             
         maps
             input: "testOperatorBTokenC"
-            output: "Function"
+            output: "Operator"
             
         maps
             input: "testUnidentifiableToken"

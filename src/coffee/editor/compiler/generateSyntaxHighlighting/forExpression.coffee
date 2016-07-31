@@ -19,7 +19,7 @@ module.exports = editorCompilerGenerateSyntaxHighlightingForExpression = (expres
         output = [
             starts: expression.starts
             ends: expression.ends
-            class: "Function"
+            class: "Operator"
         ]
         for argument in expression.with
             output = output.concat recurse argument

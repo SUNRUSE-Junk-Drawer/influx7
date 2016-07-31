@@ -80,7 +80,7 @@ describe "editor", -> describe "compiler", -> describe "generateSyntaxHighlighti
             output: [
                     starts: 320
                     ends: 360
-                    class: "Function"
+                    class: "Operator"
                 ,
                     "test recursed argument a a"
                     "test recursed argument a b"
