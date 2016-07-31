@@ -70,19 +70,15 @@ footer .message {
 }
 
 #SyntaxHighlighting .Comment {
-    color: rgb(76, 136, 107);
+    color: #118811;
 }
 
 #SyntaxHighlighting .Literal {
-    color: rgb(0, 0, 205);
-}
-
-#SyntaxHighlighting .Operator {
-    color: rgb(104, 118, 135);
+    color: #006be6;
 }
 
 #SyntaxHighlighting .Statement {
-    color: rgb(49, 132, 149);
+    color: #630066;
 }
 
 #SyntaxHighlighting .Parenthesis {
@@ -97,8 +93,8 @@ footer .message {
     color: grey;
 }
 
-#SyntaxHighlighting .Function {
-    color: rgb(24, 122, 234);
+#SyntaxHighlighting .Operator {
+    color: #003194;
 }
 
 #Error {
