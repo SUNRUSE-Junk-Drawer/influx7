@@ -29,3 +29,9 @@ module.exports = editorErrorLocalizations =
     undefinedReference:
         message: "Undefined reference"
         details: "This is not defined here."
+    identifierExpected:
+        message: "Identifier expected"
+        details: "An identifier is expected here."
+    returnExpected:
+        message: "Return expected"
+        details: "This function does not return a value."
