@@ -44,7 +44,7 @@ module.exports = expressionInline = (expression, declarations) -> switch
             newDeclarations = {}
             for key, value of declarations
                 newDeclarations[key] = value
-            newDeclarations[expression.declare.token] = expression.as
+            newDeclarations[expression.declare.token] = recurse expression.as, declarations
             recurse expression.then, newDeclarations
     else expression
 

@@ -107,8 +107,13 @@ describe "expression", -> describe "inline", ->
                     declarations:
                         textExistingDeclarationA: "test declaration value a"
                         textExistingDeclarationB: "test declaration value b"
-                        testNonexistentDeclaration: "test new declaration"
+                        testNonexistentDeclaration: "test recursed new declaration"
                     output: "test recursed expression"
+                "test new declaration":
+                    declarations:
+                        textExistingDeclarationA: "test declaration value a"
+                        textExistingDeclarationB: "test declaration value b"
+                    output: "test recursed new declaration"
             output: "test recursed expression"
             
         run
