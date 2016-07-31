@@ -26,3 +26,6 @@ module.exports = editorErrorLocalizations =
     emptyExpression:
         message: "Empty expression"
         details: "An expression was expected here."
+    undefinedReference:
+        message: "Undefined reference"
+        details: "This is not defined here."

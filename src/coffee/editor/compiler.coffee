@@ -65,7 +65,9 @@ addEventListener "message", (e) ->
     syntaxHighlighting = editorGenerateSyntaxHighlighting e.data, editorGenerateSyntaxHighlightingForExpression parsed
         
     try
-        typeChecked = expressionTypeCheck parsed
+        inlined = expressionInline parsed, {}
+    
+        typeChecked = expressionTypeCheck inlined
             
         expressionGetPlurality typeChecked
             
@@ -90,6 +92,7 @@ tokenizeSplitByWhitespace = require "./../tokenize/splitByWhitespace"
 tokenizeSplitToken = require "./../tokenize/splitToken"
 tokenizeParenthesize = require "./../tokenize/parenthesize"
 expressionParse = require "./../expression/parse"
+expressionInline = require "./../expression/inline"
 expressionTypeCheck = require "./../expression/typeCheck"
 expressionGetPlurality = require "./../expression/getPlurality"
 expressionUnroll = require "./../expression/unroll"

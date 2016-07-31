@@ -13,3 +13,4 @@ describe "editor", -> describe "compilationCompleted", -> describe "error", -> d
     localizes "identifierInvalid"
     localizes "identifierNotUnique"
     localizes "emptyExpression"
+    localizes "undefinedReference"
