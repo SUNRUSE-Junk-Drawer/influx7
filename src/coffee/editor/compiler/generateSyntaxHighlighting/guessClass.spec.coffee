@@ -2,6 +2,7 @@ describe "editor", -> describe "compiler", -> describe "generateSyntaxHighlighti
     rewire = require "rewire"
     describe "imports", ->
         editorCompilerGenerateSyntaxHighlightingGuessClass = rewire "./guessClass"
+        it "isIdentifier", -> (expect editorCompilerGenerateSyntaxHighlightingGuessClass.__get__ "isIdentifier").toBe require "./../../../isIdentifier"
         it "tokenizeParentheses", -> (expect editorCompilerGenerateSyntaxHighlightingGuessClass.__get__ "tokenizeParentheses").toBe require "./../../../tokenize/parentheses"
         it "expressionParseOperatorTokens", -> (expect editorCompilerGenerateSyntaxHighlightingGuessClass.__get__ "expressionParseOperatorTokens").toBe require "./../../../expression/parse/operatorTokens"
         it "expressionParseStatementFunctions", -> (expect editorCompilerGenerateSyntaxHighlightingGuessClass.__get__ "expressionParseStatementFunctions").toBe require "./../../../expression/parse/statement/functions"
@@ -34,6 +35,7 @@ describe "editor", -> describe "compiler", -> describe "generateSyntaxHighlighti
                 for key, value of expressionParseStatementFunctions
                     expressionParseStatementFunctionsCopy[key] = value
                 editorCompilerGenerateSyntaxHighlightingGuessClass.__set__ "expressionParseStatementFunctions", expressionParseStatementFunctionsCopy
+                editorCompilerGenerateSyntaxHighlightingGuessClass.__set__ "isIdentifier", (str) -> str is "testIdentifier"
                 result = editorCompilerGenerateSyntaxHighlightingGuessClass config.input
             it "does not modify tokenizeParentheses", -> (expect tokenizeParenthesesCopy).toEqual tokenizeParentheses
             it "does not modify expressionParseOperatorTokens", -> (expect expressionParseOperatorTokensCopy).toEqual expressionParseOperatorTokens
@@ -83,6 +85,10 @@ describe "editor", -> describe "compiler", -> describe "generateSyntaxHighlighti
         maps
             input: "testOperatorBTokenC"
             output: "Operator"
+            
+        maps
+            input: "testIdentifier"
+            output: "Identifier"
             
         maps
             input: "testUnidentifiableToken"

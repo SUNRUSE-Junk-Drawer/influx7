@@ -9,6 +9,7 @@ module.exports = editorCompilerGenerateSyntaxHighlightingGuessClass = (token) ->
     when token is "false" then "Literal"
     when token is "." then "Literal"
     when /^\d+$/.test token then "Literal"
+    when isIdentifier token then "Identifier"
     else
         for key, values of expressionParseOperatorTokens
             if token in values then return "Operator"
@@ -18,6 +19,7 @@ module.exports = editorCompilerGenerateSyntaxHighlightingGuessClass = (token) ->
             if token is closer then return "Parenthesis"
         "Unparsed"
     
+isIdentifier = require "./../../../isIdentifier"
 expressionParseOperatorTokens = require "./../../../expression/parse/operatorTokens"
 tokenizeParentheses = require "./../../../tokenize/parentheses"
 expressionParseStatementFunctions = require "./../../../expression/parse/statement/functions"
