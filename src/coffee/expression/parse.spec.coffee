@@ -3,6 +3,8 @@ describe "expression", -> describe "parse", ->
     describe "imports", ->
         expressionParse = rewire "./parse"
         it "expressionParseReference", -> (expect expressionParse.__get__ "expressionParseReference").toBe require "./parse/reference"
+        it "expressionParseLambda", -> (expect expressionParse.__get__ "expressionParseLambda").toBe require "./parse/lambda"
+        it "expressionParseCall", -> (expect expressionParse.__get__ "expressionParseCall").toBe require "./parse/call"
         it "expressionParseStatement", -> (expect expressionParse.__get__ "expressionParseStatement").toBe require "./parse/statement"
         it "expressionParseBoolean", -> (expect expressionParse.__get__ "expressionParseBoolean").toBe require "./parse/boolean"
         it "expressionParseInteger", -> (expect expressionParse.__get__ "expressionParseInteger").toBe require "./parse/integer"
@@ -51,6 +53,9 @@ describe "expression", -> describe "parse", ->
                     operatorPrecedence = JSON.parse JSON.stringify operatorPrecedenceCopy
                     expressionParse.__set__ "expressionParseOperatorPrecedence", operatorPrecedence
 
+                    expressionParse.__set__ "expressionParseCall", (expr) ->
+                        (expect expr).toEqual inputCopy
+                        config.parsesCallTo or null                    
                     expressionParse.__set__ "expressionParseReference", (expr) ->
                         (expect expr).toEqual inputCopy
                         config.parsesReferenceTo or null                    
@@ -77,6 +82,9 @@ describe "expression", -> describe "parse", ->
                     expressionParse.__set__ "expressionParseStatement", (expr) ->
                         (expect expr).toEqual inputCopy
                         config.parsesStatementTo or null
+                    expressionParse.__set__ "expressionParseLambda", (expr) ->
+                        (expect expr).toEqual inputCopy
+                        config.parsesLambdaTo or null
                 
                     input = JSON.parse JSON.stringify inputCopy
                 
@@ -139,6 +147,101 @@ describe "expression", -> describe "parse", ->
                 testLevelDBinary: null
             parsesStatementTo: "test parsed statement expression"
             output: "test parsed statement expression"
+            
+        run
+            description: "lambda"
+            parsesUnaryTo:
+                testLevelAUnary: null
+                testLevelBUnary: null
+                testLevelCUnary: null
+                testLevelDUnary: null
+            parsesBinaryTo:
+                testLevelABinary: null
+                testLevelBBinary: null
+                testLevelCBinary: null
+                testLevelDBinary: null
+            parsesLambdaTo: "test parsed lambda expression"
+            output: "test parsed lambda expression"
+            
+        run
+            description: "call"
+            parsesUnaryTo:
+                testLevelAUnary: null
+                testLevelBUnary: null
+                testLevelCUnary: null
+                testLevelDUnary: null
+            parsesBinaryTo:
+                testLevelABinary: null
+                testLevelBBinary: null
+                testLevelCBinary: null
+                testLevelDBinary: null
+            parsesCallTo: "test parsed call expression"
+            output: "test parsed call expression"
+            
+        run
+            description: "statement over lambda"
+            parsesUnaryTo:
+                testLevelAUnary: null
+                testLevelBUnary: null
+                testLevelCUnary: null
+                testLevelDUnary: null
+            parsesBinaryTo:
+                testLevelABinary: null
+                testLevelBBinary: null
+                testLevelCBinary: null
+                testLevelDBinary: null
+            parsesStatementTo: "test parsed statement expression"
+            parsesLambdaTo: "test parsed lambda expression"
+            output: "test parsed statement expression"
+            
+        run
+            description: "statement over call"
+            parsesUnaryTo:
+                testLevelAUnary: null
+                testLevelBUnary: null
+                testLevelCUnary: null
+                testLevelDUnary: null
+            parsesBinaryTo:
+                testLevelABinary: null
+                testLevelBBinary: null
+                testLevelCBinary: null
+                testLevelDBinary: null
+            parsesStatementTo: "test parsed statement expression"
+            parsesCallTo: "test parsed call expression"
+            output: "test parsed statement expression"
+            
+        run
+            description: "lamabda over call"
+            parsesUnaryTo:
+                testLevelAUnary: null
+                testLevelBUnary: null
+                testLevelCUnary: null
+                testLevelDUnary: null
+            parsesBinaryTo:
+                testLevelABinary: null
+                testLevelBBinary: null
+                testLevelCBinary: null
+                testLevelDBinary: null
+            parsesCallTo: "test parsed call expression"
+            parsesLambdaTo: "test parsed lambda expression"
+            output: "test parsed lambda expression"
+
+        run
+            description: "statement over lambda and call"
+            parsesUnaryTo:
+                testLevelAUnary: null
+                testLevelBUnary: null
+                testLevelCUnary: null
+                testLevelDUnary: null
+            parsesBinaryTo:
+                testLevelABinary: null
+                testLevelBBinary: null
+                testLevelCBinary: null
+                testLevelDBinary: null
+            parsesStatementTo: "test parsed statement expression"
+            parsesLambdaTo: "test parsed lambda expression"
+            parsesCallTo: "test parsed call expression"
+            output: "test parsed statement expression"            
 
         run
             description: "reference"
@@ -328,7 +431,67 @@ describe "expression", -> describe "parse", ->
                 testLevelCBinary: null
                 testLevelDBinary: null
             parsesStatementTo: "test parsed statement expression"
-            output: "test parsed statement expression"                
+            output: "test parsed statement expression"     
+
+        run
+            description: "lambda over unary"
+            parsesUnaryTo:
+                testLevelAUnary: null
+                testLevelBUnary: "test parsed unary expression"
+                testLevelCUnary: null
+                testLevelDUnary: null
+            parsesBinaryTo:
+                testLevelABinary: null
+                testLevelBBinary: null
+                testLevelCBinary: null
+                testLevelDBinary: null
+            parsesLambdaTo: "test parsed lambda expression"
+            output: "test parsed lambda expression"
+                
+        run
+            description: "lambda over binary"
+            parsesUnaryTo:
+                testLevelAUnary: null
+                testLevelBUnary: null
+                testLevelCUnary: null
+                testLevelDUnary: null
+            parsesBinaryTo:
+                testLevelABinary: null
+                testLevelBBinary: "test parsed binary expression"
+                testLevelCBinary: null
+                testLevelDBinary: null
+            parsesLambdaTo: "test parsed lambda expression"
+            output: "test parsed lambda expression"   
+            
+        run
+            description: "unary over call"
+            parsesUnaryTo:
+                testLevelAUnary: null
+                testLevelBUnary: null
+                testLevelCUnary: "test parsed unary expression"
+                testLevelDUnary: null
+            parsesBinaryTo:
+                testLevelABinary: null
+                testLevelBBinary: null
+                testLevelCBinary: null
+                testLevelDBinary: null
+            parsesCallTo: "test parsed call expression"
+            output: "test parsed unary expression"   
+            
+        run
+            description: "binary over call"
+            parsesUnaryTo:
+                testLevelAUnary: null
+                testLevelBUnary: null
+                testLevelCUnary: null
+                testLevelDUnary: null
+            parsesBinaryTo:
+                testLevelABinary: null
+                testLevelBBinary: "test parsed binary expression"
+                testLevelCBinary: null
+                testLevelDBinary: null
+            parsesCallTo: "test parsed call expression"
+            output: "test parsed binary expression"  
                 
     describe "integration", ->
         expressionParse = rewire "./parse"

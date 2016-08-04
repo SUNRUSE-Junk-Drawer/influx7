@@ -12,7 +12,7 @@
 # Recurses through to expressionParseParentheses/expressionParseStatement; could 
 # throw other exceptions.
 module.exports = expressionParse = (tokens) ->
-    result = (expressionParseReference tokens) or (expressionParseStatement tokens) or (expressionParseParentheses tokens) or (expressionParseFloat tokens) or (expressionParseInteger tokens) or (expressionParseBoolean tokens)
+    result = (expressionParseReference tokens) or (expressionParseStatement tokens) or (expressionParseLambda tokens) or (expressionParseParentheses tokens) or (expressionParseFloat tokens) or (expressionParseInteger tokens) or (expressionParseBoolean tokens)
     if result
         result
     else
@@ -21,11 +21,16 @@ module.exports = expressionParse = (tokens) ->
             if result then return result
             result = expressionParseBinary tokens, level.binary
             if result then return result
-        throw unused = 
-            reason: "invalidExpression"
-            starts: tokens[0].starts
-            ends: tokens[tokens.length - 1].ends   
+        result = expressionParseCall tokens
+        if result
+            result
+        else
+            throw unused = 
+                reason: "invalidExpression"
+                starts: tokens[0].starts
+                ends: tokens[tokens.length - 1].ends   
     
+expressionParseLambda = require "./parse/lambda"
 expressionParseReference = require "./parse/reference"
 expressionParseStatement = require "./parse/statement"
 expressionParseParentheses = require "./parse/parentheses"
@@ -35,3 +40,4 @@ expressionParseBoolean = require "./parse/boolean"
 expressionParseInteger = require "./parse/integer"
 expressionParseFloat = require "./parse/float"
 expressionParseOperatorPrecedence = require "./parse/operatorPrecedence"
+expressionParseCall = require "./parse/call"
