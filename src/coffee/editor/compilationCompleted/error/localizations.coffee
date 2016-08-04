@@ -35,3 +35,9 @@ module.exports = editorErrorLocalizations =
     returnExpected:
         message: "Return expected"
         details: "This function does not return a value."
+    noParameters:
+        message: "Parameters expected"
+        details: "Please name one or more parameters (a b c, for example)."
+    duplicateParameters:
+        message: "Parameter names not unique"
+        details: "Parameter names must be unique within the same function."

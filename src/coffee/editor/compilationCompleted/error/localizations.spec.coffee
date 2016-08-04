@@ -16,3 +16,5 @@ describe "editor", -> describe "compilationCompleted", -> describe "error", -> d
     localizes "undefinedReference"
     localizes "identifierExpected"
     localizes "returnExpected"
+    localizes "noParameters"
+    localizes "duplicateParameters"

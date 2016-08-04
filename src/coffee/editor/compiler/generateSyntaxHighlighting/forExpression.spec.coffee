@@ -193,3 +193,110 @@ describe "editor", -> describe "compiler", -> describe "generateSyntaxHighlighti
                     "test recursed subsequent expression b"
                     "test recursed subsequent expression c"
             ]
+            
+        run
+            description: "lambda"
+            input:
+                parameters: [
+                        token: "test parameter token a"
+                        starts: 14
+                        ends: 27
+                    ,
+                        token: "test parameter token b"
+                        starts: 45
+                        ends: 67
+                    ,
+                        token: "test parameter token c"
+                        starts: 132
+                        ends: 156
+                ]
+                body: "test body expression"
+                starts: 194
+                ends: 244
+            recursesTo:
+                "test body expression": [
+                    "test recursed body expression a"
+                    "test recursed body expression b"
+                    "test recursed body expression c"
+                    "test recursed body expression d"
+                ]
+            output: [
+                    starts: 14
+                    ends: 27
+                    class: "Identifier"
+                ,
+                    starts: 45
+                    ends: 67
+                    class: "Identifier"
+                ,
+                    starts: 132
+                    ends: 156
+                    class: "Identifier"
+                ,
+                    starts: 194
+                    ends: 244
+                    class: "Statement"
+                ,
+                    "test recursed body expression a"
+                    "test recursed body expression b"
+                    "test recursed body expression c"
+                    "test recursed body expression d"
+            ]
+            
+        run
+            description: "lambda call"
+            input:
+                callLambda: "test lambda expression"
+                with: [
+                    "test argument expression a"
+                    "test argument expression b"
+                    "test argument expression c"
+                ]
+                starts: 14
+                ends: 132
+            recursesTo:
+                "test lambda expression": [
+                    "test recursed lambda expression a"
+                    "test recursed lambda expression b"
+                    "test recursed lambda expression c"
+                    "test recursed lambda expression d"
+                    "test recursed lambda expression e"
+                ]
+                "test argument expression a": [
+                    "test recursed argument expression a a"
+                    "test recursed argument expression a b"
+                    "test recursed argument expression a c"
+                ]
+                "test argument expression b": [
+                    "test recursed argument expression b a"
+                    "test recursed argument expression b b"
+                ]
+                "test argument expression c": [
+                    "test recursed argument expression c a"
+                    "test recursed argument expression c b"
+                    "test recursed argument expression c c"
+                ]
+            output: [
+                    "test recursed lambda expression a"
+                    "test recursed lambda expression b"
+                    "test recursed lambda expression c"
+                    "test recursed lambda expression d"
+                    "test recursed lambda expression e"
+                ,
+                    class: "Parenthesis"
+                    starts: 14
+                    ends: 14
+                ,
+                    "test recursed argument expression a a"
+                    "test recursed argument expression a b"
+                    "test recursed argument expression a c"
+                    "test recursed argument expression b a"
+                    "test recursed argument expression b b"
+                    "test recursed argument expression c a"
+                    "test recursed argument expression c b"
+                    "test recursed argument expression c c"
+                ,
+                    class: "Parenthesis"
+                    starts: 132
+                    ends: 132
+            ]

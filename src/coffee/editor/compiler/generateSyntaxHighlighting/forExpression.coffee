@@ -62,5 +62,29 @@ module.exports = editorCompilerGenerateSyntaxHighlightingForExpression = (expres
         before
             .concat recurse expression.as
             .concat recurse expression.then
+    when expression.body
+        (for parameter in expression.parameters
+            class: "Identifier"
+            starts: parameter.starts
+            ends: parameter.ends
+        ).concat [
+            class: "Statement"
+            starts: expression.starts
+            ends: expression.ends
+        ].concat recurse expression.body
+    when expression.callLambda
+        output = (recurse expression.callLambda).slice()
+        output.push
+            class: "Parenthesis"
+            starts: expression.starts
+            ends: expression.starts
+        for argument in expression.with
+            for token in recurse argument
+                output.push token
+        output.push
+            class: "Parenthesis"
+            starts: expression.ends
+            ends: expression.ends
+        output
     
 recurse = module.exports
