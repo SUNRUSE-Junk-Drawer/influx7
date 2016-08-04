@@ -46,6 +46,8 @@ module.exports = expressionInline = (expression, declarations) -> switch
                 newDeclarations[key] = value
             newDeclarations[expression.declare.token] = recurse expression.as, declarations
             recurse expression.then, newDeclarations
+    when expression.body then recurse expression.body, declarations
+    when expression.callLambda then recurse expression.callLambda, declarations
     else expression
 
 recurse = module.exports
