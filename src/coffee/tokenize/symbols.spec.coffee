@@ -20,7 +20,7 @@ describe "tokenize", -> describe "symbols", ->
         includes = (character) ->
             it character, -> (expect tokenizeSymbols.indexOf character).not.toEqual -1
             
-        includes ":"
+        includes "->"
             
         describe "parenthesis", ->
             includes "("
