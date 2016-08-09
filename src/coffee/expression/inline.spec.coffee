@@ -233,3 +233,156 @@ describe "expression", -> describe "inline", ->
                                 ends: 22
                         ]
                 ]
+                
+        run 
+            description: "reuse of let"
+            input:  """
+                let a 3 + 4
+                let b 8 - a
+                return a * b
+                    """
+            output: 
+                call: "multiply"
+                starts: 33
+                ends: 33
+                with: [
+                        call: "add"
+                        starts: 8
+                        ends: 8
+                        with: [
+                                primitive: "integer"
+                                value: 3
+                                starts: 6
+                                ends: 6
+                            ,
+                                primitive: "integer"
+                                value: 4
+                                starts: 10
+                                ends: 10
+                        ]
+                    ,
+                        call: "subtract"
+                        starts: 20
+                        ends: 20
+                        with: [
+                                primitive: "integer"
+                                value: 8
+                                starts: 18
+                                ends: 18
+                            ,
+                                call: "add"
+                                starts: 8
+                                ends: 8
+                                with: [
+                                        primitive: "integer"
+                                        value: 3
+                                        starts: 6
+                                        ends: 6
+                                    ,
+                                        primitive: "integer"
+                                        value: 4
+                                        starts: 10
+                                        ends: 10
+                                ]
+                        ]
+                ]
+                
+        run 
+            description: "scoped let"
+            input:  """
+                (
+                    let a 3 + 10
+                    let b 7 - 8
+                    return a * -b
+                ) + (
+                    let a 7 - 4
+                    let b 5 * 4
+                    return b * a
+                )
+                    """
+            output: 
+                call: "add"
+                starts: 55
+                ends: 55
+                with: [
+                        # First scope
+                        call: "multiply"
+                        starts: 48
+                        ends: 48
+                        with: [
+                                # a
+                                call: "add"
+                                starts: 14
+                                ends: 14
+                                with: [
+                                        primitive: "integer"
+                                        value: 3
+                                        starts: 12
+                                        ends: 12
+                                    ,
+                                        primitive: "integer"
+                                        value: 10
+                                        starts: 16
+                                        ends: 17
+                                ]
+                            ,
+                                call: "negate"
+                                starts: 50
+                                ends: 50
+                                with: [
+                                    # b
+                                    call: "subtract"
+                                    starts: 31
+                                    ends: 31
+                                    with: [
+                                            primitive: "integer"
+                                            value: 7
+                                            starts: 29
+                                            ends: 29
+                                        ,
+                                            primitive: "integer"
+                                            value: 8
+                                            starts: 33
+                                            ends: 33
+                                    ]
+                                ]
+                        ]
+                    ,
+                       # Second scope
+                        call: "multiply"
+                        starts: 104
+                        ends: 104
+                        with: [
+                                # b
+                                call: "multiply"
+                                starts: 87
+                                ends: 87
+                                with: [
+                                        primitive: "integer"
+                                        value: 5
+                                        starts: 85
+                                        ends: 85
+                                    ,
+                                        primitive: "integer"
+                                        value: 4
+                                        starts: 89
+                                        ends: 89
+                                ]
+                            ,
+                                # a
+                                call: "subtract"
+                                starts: 71
+                                ends: 71
+                                with: [
+                                        primitive: "integer"
+                                        value: 7
+                                        starts: 69
+                                        ends: 69
+                                    ,
+                                        primitive: "integer"
+                                        value: 4
+                                        starts: 73
+                                        ends: 73
+                                ]
+                        ]
+                ]
