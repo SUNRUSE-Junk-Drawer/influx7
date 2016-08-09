@@ -666,5 +666,3 @@ describe "expression", -> describe "parse", -> describe "lambda", ->
                 reason: "duplicateParameters"
                 starts: 214
                 ends: 244
-                
-        xit "nonexistent identifiers", ->
