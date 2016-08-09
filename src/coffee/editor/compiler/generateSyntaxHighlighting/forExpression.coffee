@@ -6,8 +6,8 @@
 #         this token.
 # - class: A string describing the token; see ./guessClass.
 
-# TODO: This currently cannot recreate parentheses as they are not included in
-# the expression.
+# TODO: This currently cannot recreate commas in lambda calls as they are not 
+# included in the expression.
 
 module.exports = editorCompilerGenerateSyntaxHighlightingForExpression = (expression) -> switch
     when expression.primitive then [
