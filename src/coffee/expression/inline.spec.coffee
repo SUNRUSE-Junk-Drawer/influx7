@@ -190,6 +190,8 @@ describe "expression", -> describe "inline", ->
                     if ex.reason
                         fail JSON.stringify ex, null, 4
                     else throw ex
+                    
+        xrun = (config) -> xit config.description, ->
             
         run 
             description: "basic let"
@@ -385,4 +387,43 @@ describe "expression", -> describe "inline", ->
                                         ends: 73
                                 ]
                         ]
+                ]
+                
+        xrun 
+            description: "basic inline lambda call"
+            input:  "(a b -> a * b + 3)(7, 5) - 9"
+            output: 
+                call: "subtract"
+                starts: 25
+                ends: 25
+                with: [
+                        call: "add"
+                        starts: 14
+                        ends: 14
+                        with: [
+                                call: "multiply"
+                                starts: 10
+                                ends: 10
+                                with: [
+                                        primitive: "integer"
+                                        value: 7
+                                        starts: 19
+                                        ends: 19
+                                    ,
+                                        primitive: "integer"
+                                        value: 5
+                                        starts: 22
+                                        ends: 22
+                                ]
+                            ,
+                                primitive: "integer"
+                                value: 3
+                                starts: 16
+                                ends: 16
+                        ]
+                    ,
+                        primitive: "integer"
+                        value: 9
+                        starts: 27
+                        ends: 27
                 ]
