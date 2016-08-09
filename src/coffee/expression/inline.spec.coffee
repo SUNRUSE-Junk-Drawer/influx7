@@ -3,7 +3,7 @@ describe "expression", -> describe "inline", ->
     describe "imports", ->
         expressionInline = rewire "./inline"
         it "itself", -> (expect expressionInline.__get__ "recurse").toBe expressionInline
-    describe "on calling", ->
+    describe "unit", ->
         expressionInline = rewire "./inline"
         declarations = 
             textExistingDeclarationA: "test declaration value a"
@@ -176,3 +176,60 @@ describe "expression", -> describe "inline", ->
                 reason: "undefinedReference"
                 starts: 37
                 ends: 108
+                
+    describe "integration", ->
+        tokenize = require "./../tokenize"
+        expressionParse = require "./parse"
+        expressionInline = require "./inline"
+    
+        run = (config) -> describe config.description, ->
+            it "returns the expected result", ->
+                try
+                    (expect expressionInline (expressionParse tokenize config.input), {}).toEqual config.output
+                catch ex
+                    if ex.reason
+                        fail JSON.stringify ex, null, 4
+                    else throw ex
+            
+        run 
+            description: "basic let"
+            input:  """
+                let a 3 + 4
+                let b 8 - 9
+                return a * b
+                    """
+            output: 
+                call: "multiply"
+                starts: 33
+                ends: 33
+                with: [
+                        call: "add"
+                        starts: 8
+                        ends: 8
+                        with: [
+                                primitive: "integer"
+                                value: 3
+                                starts: 6
+                                ends: 6
+                            ,
+                                primitive: "integer"
+                                value: 4
+                                starts: 10
+                                ends: 10
+                        ]
+                    ,
+                        call: "subtract"
+                        starts: 20
+                        ends: 20
+                        with: [
+                                primitive: "integer"
+                                value: 8
+                                starts: 18
+                                ends: 18
+                            ,
+                                primitive: "integer"
+                                value: 9
+                                starts: 22
+                                ends: 22
+                        ]
+                ]
