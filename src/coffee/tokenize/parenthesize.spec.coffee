@@ -76,6 +76,32 @@ describe "tokenize", -> describe "parenthesize", ->
                     starts: 39
                     ends: 43
             ]
+            
+        run 
+            description: "ignores prototype keys"
+            input: [
+                    token: "misca"
+                    starts: 5
+                ,
+                    token: "constructor"
+                    starts: 17
+                ,
+                    token: "miscc"
+                    starts: 39
+            ]
+            output: [
+                    token: "misca"
+                    starts: 5
+                    ends: 9
+                ,
+                    token: "constructor"
+                    starts: 17
+                    ends: 27
+                ,
+                    token: "miscc"
+                    starts: 39
+                    ends: 43
+            ]
         
         run 
             description: "one opening parenthesis"
