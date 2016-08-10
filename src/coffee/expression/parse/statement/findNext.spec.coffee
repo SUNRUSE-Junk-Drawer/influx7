@@ -907,3 +907,91 @@ describe "expression", -> describe "parse", -> describe "statement", -> describe
                         starts: 437
                         ends: 475
                 ]
+                
+        run
+            description: "inherited properties are ignored"
+            input: [
+                    token: "test non-statement a"
+                    starts: 25
+                    ends: 37
+                ,
+                    token: "test non-statement b"
+                    starts: 64
+                    ends: 78
+                ,
+                    token: "test non-statement c"
+                    starts: 89
+                    ends: 103
+                ,
+                    token: "constructor"
+                    starts: 143
+                    ends: 156
+                ,
+                    token: "test non-statement d"
+                    starts: 184
+                    ends: 206
+                ,
+                    token: "test non-statement e"
+                    starts: 212
+                    ends: 235
+                ,
+                    token: "testStatementC"
+                    starts: 259
+                    ends: 274
+                ,
+                    token: "test non-statement f"
+                    starts: 298
+                    ends: 304
+                ,
+                    token: "test non-statement g"
+                    starts: 335
+                    ends: 374
+                ,
+                    token: "test non-statement h"
+                    starts: 437
+                    ends: 475
+            ]
+            output: 
+                before: [
+                        token: "test non-statement a"
+                        starts: 25
+                        ends: 37
+                    ,
+                        token: "test non-statement b"
+                        starts: 64
+                        ends: 78
+                    ,
+                        token: "test non-statement c"
+                        starts: 89
+                        ends: 103
+                    ,
+                        token: "constructor"
+                        starts: 143
+                        ends: 156
+                    ,
+                        token: "test non-statement d"
+                        starts: 184
+                        ends: 206
+                    ,
+                        token: "test non-statement e"
+                        starts: 212
+                        ends: 235
+                ]
+                statement:
+                    token: "testStatementC"
+                    starts: 259
+                    ends: 274
+                statementFunction: expressionParseStatementFunctions.testStatementC
+                after: [
+                        token: "test non-statement f"
+                        starts: 298
+                        ends: 304
+                    ,
+                        token: "test non-statement g"
+                        starts: 335
+                        ends: 374
+                    ,
+                        token: "test non-statement h"
+                        starts: 437
+                        ends: 475
+                ]

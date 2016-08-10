@@ -7,12 +7,11 @@
 # Otherwise returns null.
 module.exports = expressionParseStatementFindNext = (tokens) ->
     for token, i in tokens
-        func = expressionParseStatementFunctions[token.token]
-        if not func then continue
+        if not Object.prototype.hasOwnProperty.call expressionParseStatementFunctions, token.token then continue
         return unused =
             before: tokens[...i]
             statement: token
-            statementFunction: func
+            statementFunction: expressionParseStatementFunctions[token.token]
             after: tokens[i + 1..]
     null
 
