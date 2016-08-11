@@ -427,3 +427,347 @@ describe "expression", -> describe "inline", ->
                         starts: 27
                         ends: 27
                 ]
+                
+        xrun 
+            description: "basic let lambda call"
+            input:  """
+                let x a b -> a * b + 3
+                return x(7, 5) - 9
+                    """
+            output: 
+                call: "subtract"
+                starts: 38
+                ends: 38
+                with: [
+                        call: "add"
+                        starts: 19
+                        ends: 19
+                        with: [
+                                call: "multiply"
+                                starts: 15
+                                ends: 15
+                                with: [
+                                        primitive: "integer"
+                                        value: 7
+                                        starts: 32
+                                        ends: 32
+                                    ,
+                                        primitive: "integer"
+                                        value: 5
+                                        starts: 35
+                                        ends: 35
+                                ]
+                            ,
+                                primitive: "integer"
+                                value: 3
+                                starts: 21
+                                ends: 21
+                        ]
+                    ,
+                        primitive: "integer"
+                        value: 9
+                        starts: 40
+                        ends: 40
+                ]
+                
+        xrun 
+            description: "basic let lambda call"
+            input:  """
+                let x a b -> a * b + 3
+                return x(7, 5) - 9
+                    """
+            output: 
+                call: "subtract"
+                starts: 38
+                ends: 38
+                with: [
+                        call: "add"
+                        starts: 19
+                        ends: 19
+                        with: [
+                                call: "multiply"
+                                starts: 15
+                                ends: 15
+                                with: [
+                                        primitive: "integer"
+                                        value: 7
+                                        starts: 32
+                                        ends: 32
+                                    ,
+                                        primitive: "integer"
+                                        value: 5
+                                        starts: 35
+                                        ends: 35
+                                ]
+                            ,
+                                primitive: "integer"
+                                value: 3
+                                starts: 21
+                                ends: 21
+                        ]
+                    ,
+                        primitive: "integer"
+                        value: 9
+                        starts: 40
+                        ends: 40
+                ]
+                
+        xrun 
+            description: "multiple uses of let lambda call"
+            input:  """
+                let x a b -> a * b + 3
+                return x(7, 5) - x(10, 14)
+                    """
+            output: 
+                call: "subtract"
+                starts: 38
+                ends: 38
+                with: [
+                        call: "add"
+                        starts: 19
+                        ends: 19
+                        with: [
+                                call: "multiply"
+                                starts: 15
+                                ends: 15
+                                with: [
+                                        primitive: "integer"
+                                        value: 7
+                                        starts: 32
+                                        ends: 32
+                                    ,
+                                        primitive: "integer"
+                                        value: 5
+                                        starts: 35
+                                        ends: 35
+                                ]
+                            ,
+                                primitive: "integer"
+                                value: 3
+                                starts: 21
+                                ends: 21
+                        ]
+                    ,
+                        call: "add"
+                        starts: 19
+                        ends: 19
+                        with: [
+                                call: "multiply"
+                                starts: 15
+                                ends: 15
+                                with: [
+                                        primitive: "integer"
+                                        value: 10
+                                        starts: 42
+                                        ends: 43
+                                    ,
+                                        primitive: "integer"
+                                        value: 14
+                                        starts: 46
+                                        ends: 47
+                                ]
+                            ,
+                                primitive: "integer"
+                                value: 3
+                                starts: 21
+                                ends: 21
+                        ]
+                ]
+                
+        xrun 
+            description: "operations on lambdas"
+            input:  "((a -> a * 4) + (b -> b * 9))(2)"
+            output: 
+                call: "add"
+                starts: 14
+                ends: 14
+                with: [
+                        call: "multiply"
+                        starts: 9
+                        ends: 9
+                        with: [
+                                primitive: "integer"
+                                value: 2
+                                starts: 30
+                                ends: 30
+                            ,
+                                primitive: "integer"
+                                value: 4
+                                starts: 11
+                                ends: 11
+                        ]
+                    ,
+                        call: "multiply"
+                        starts: 24
+                        ends: 24
+                        with: [
+                                primitive: "integer"
+                                value: 2
+                                starts: 30
+                                ends: 30
+                            ,
+                                primitive: "integer"
+                                value: 9
+                                starts: 26
+                                ends: 26
+                        ]
+                ]
+                
+        xrun 
+            description: "constructor lambda"
+            input:  """
+                let constructor captureA -> captureB -> captureA * captureB
+                let constructedA constructor(3)
+                let constructedB constructor(5)
+                return constructedA(7) + constructedA(9) - constructedB(11) + constructedB(13)
+                    """
+            output: 
+                call: "subtract"
+                starts: 165
+                ends: 165
+                with: [
+                        call: "add"
+                        starts: 147
+                        ends: 147
+                        with: [
+                                call: "multiply"
+                                starts: 50
+                                ends: 50
+                                with: [
+                                        primitive: "integer"
+                                        starts: 89
+                                        ends: 89
+                                        value: 3
+                                    ,
+                                        primitive: "integer"
+                                        starts: 144
+                                        ends: 144
+                                        value: 7
+                                ]
+                            ,
+                                call: "multiply"
+                                starts: 50
+                                ends: 50
+                                with: [
+                                        primitive: "integer"
+                                        starts: 89
+                                        ends: 89
+                                        value: 3
+                                    ,
+                                        primitive: "integer"
+                                        starts: 162
+                                        ends: 162
+                                        value: 9
+                                ]
+                        ]
+                    ,
+                        call: "add"
+                        starts: 185
+                        ends: 185
+                        with: [
+                                call: "multiply"
+                                starts: 50
+                                ends: 50
+                                with: [
+                                        primitive: "integer"
+                                        starts: 121
+                                        ends: 121
+                                        value: 5
+                                    ,
+                                        primitive: "integer"
+                                        starts: 180
+                                        ends: 181
+                                        value: 11
+                                ]
+                            ,
+                                call: "multiply"
+                                starts: 50
+                                ends: 50
+                                with: [
+                                        primitive: "integer"
+                                        starts: 121
+                                        ends: 121
+                                        value: 5
+                                    ,
+                                        primitive: "integer"
+                                        starts: 199
+                                        ends: 200
+                                        value: 13
+                                ]
+                        ]
+                ]
+            
+        xrun 
+            description: "pseudolet; callbacks"
+            input:  """
+                (pseudolet -> pseudolet(
+                35 * 4, a -> pseudolet(
+                18 * 2, b -> pseudolet(
+                a - 7, c -> a + b + c
+                ))))(a b -> b(a))
+                    """
+            output:
+                call: "add"
+                starts: 87
+                ends: 87
+                with: [
+                        call: "multiply"
+                        starts: 29
+                        ends: 29
+                        with: [
+                                primitive: "integer"
+                                value: 35
+                                starts: 25
+                                ends: 26
+                            ,
+                                primitive: "integer"
+                                value: 4
+                                starts: 30
+                                ends: 30
+                        ]
+                    ,
+                        call: "add"
+                        starts: 91
+                        ends: 91
+                        with: [
+                                call: "multiply"
+                                starts: 54
+                                ends: 54
+                                with: [
+                                        primitive: "integer"
+                                        value: 18
+                                        starts: 49
+                                        ends: 50
+                                    ,
+                                        primitive: "integer"
+                                        value: 2
+                                        starts: 54
+                                        ends: 54
+                                ]
+                            ,
+                                call: "subtract"
+                                starts: 75
+                                ends: 75
+                                with: [
+                                        call: "multiply"
+                                        starts: 29
+                                        ends: 29
+                                        with: [
+                                                primitive: "integer"
+                                                value: 35
+                                                starts: 25
+                                                ends: 26
+                                            ,
+                                                primitive: "integer"
+                                                value: 4
+                                                starts: 30
+                                                ends: 30
+                                        ]
+                                    ,
+                                        primitive: "integer"
+                                        value: 7
+                                        starts: 77
+                                        ends: 77
+                                ]
+                        ]
+                ]
